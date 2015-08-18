@@ -1,0 +1,30 @@
+#N canvas 647 190 694 319 10;
+#X declare -lib cachorita;
+#X obj 420 59 sig~;
+#X obj 420 36 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 125 256;
+#X obj 554 28 import cachorita;
+#X obj 158 83 rita~ ca;
+#X obj 157 158 snaps~;
+#X obj 157 127 cacho~ ca;
+#X obj -20 64 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 328 169 snaps~;
+#X obj 307 128 cacho~ ca;
+#X obj 93 48 dirac~;
+#X obj 93 85 print~ A;
+#X obj 244 208 print~ C;
+#X obj 95 209 print~ B;
+#X obj -16 91 t b b b b;
+#X connect 1 0 0 0;
+#X connect 5 0 4 0;
+#X connect 5 0 12 0;
+#X connect 6 0 13 0;
+#X connect 8 0 7 0;
+#X connect 8 0 11 0;
+#X connect 9 0 3 0;
+#X connect 9 0 10 0;
+#X connect 13 0 12 0;
+#X connect 13 1 11 0;
+#X connect 13 2 10 0;
+#X connect 13 3 9 0;
