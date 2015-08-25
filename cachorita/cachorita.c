@@ -6,8 +6,9 @@
 /* ----------------------------- cacho~ ----------------------------- */
 static t_class *cacho_tilde_class;
 
-int instancias_cacho=-1;
-int instancias_ejecutadas=0;
+char cr_names[40][20];
+
+int cr_i=0;
 
 typedef struct _cacho_tilde
 {
@@ -15,7 +16,9 @@ typedef struct _cacho_tilde
     t_symbol *x_sym;
     int x_n;
     t_sample *x_vec;
-    int x_instance;
+    int x_first;
+    int* x_executed;
+    int* x_total_instances;
 
 } t_cacho_tilde;
 
@@ -23,40 +26,62 @@ void *cacho_tilde_new(t_symbol *s)
 {
 
     t_cacho_tilde *x = (t_cacho_tilde *)pd_new(cacho_tilde_class);
-    
-    instancias_cacho++;
-    x->x_instance = instancias_cacho;
-
-    post("Instancias de cacho %d",instancias_cacho);
-    
 
     x->x_sym = s;
     x->x_n = DEFSENDVS;
+	x->x_first=0;
 
-    if(x->x_instance==0)
+    int nuevo = 1;
+
+    int i;
+    for( i=0;i<cr_i;i++)
     {
+    	if( strcmp(  cr_names[i], s->s_name )==0 )
+    	{
+    		nuevo = 0;
+    		break;
+    	}
+    }
+
+    
+    if(nuevo == 1)
+    {
+    	
+
+    	strcpy( cr_names[cr_i] , s->s_name );
+		cr_i++;
         
         pd_bind(&x->x_obj.ob_pd, s);
         x->x_vec = (t_sample *)getbytes(DEFSENDVS * sizeof(t_sample));
         memset((char *)(x->x_vec), 0, DEFSENDVS * sizeof(t_sample));    
+
+        x->x_total_instances  = getbytes(sizeof(int));
+        x->x_executed = getbytes(sizeof(int));
+		
+		*(x->x_total_instances) = 0;
+		*(x->x_executed) = 0;
+
+		post("Cacho: %d %s. Cacho nuevo. Instancia n=%d",cr_i,s->s_name,*(x->x_total_instances));
+		x->x_first = 1;
     }
     else
-    {
-     
+    {   
+    
         t_cacho_tilde *catcher = (t_cacho_tilde *)pd_findbyclass((x->x_sym = s), cacho_tilde_class);
         x->x_vec = catcher->x_vec;
+
+        x->x_total_instances = catcher->x_total_instances;
+
+        *(x->x_total_instances) = *(x->x_total_instances) + 1 ;
+
+        x->x_executed = catcher->x_executed;
+
+		post("Cacho: %d %s. Cacho existente. Instancia n=%d",cr_i,s->s_name,*(x->x_total_instances));
+		
+
     }
 
-        // printf("x->x_instance %d\n",x->x_instance);
-        // pd_bind(&x->x_obj.ob_pd, s);
-        // x->x_vec = (t_sample *)getbytes(DEFSENDVS * sizeof(t_sample));
-        // memset((char *)(x->x_vec), 0, DEFSENDVS * sizeof(t_sample));    
-   
-
-
     outlet_new(&x->x_obj, &s_signal);
-
-
 
     return (x);
 }
@@ -74,13 +99,13 @@ t_int *cacho_tilde_perform(t_int *w)
     while (n--) 
     {
         *out++ = *in;
-        if( instancias_ejecutadas==instancias_cacho )
+        if( *(x->x_executed)==*(x->x_total_instances) )
             *in++ = 0; 
     }
 
-    instancias_ejecutadas++;
-    if(instancias_ejecutadas>instancias_cacho)
-        instancias_ejecutadas=0;
+    *(x->x_executed) = *(x->x_executed) + 1;
+    if(*(x->x_executed)>*(x->x_total_instances))
+        *(x->x_executed)=0;
 
     return (w+5);
 }
@@ -103,9 +128,9 @@ t_int *cacho_tilde_perf8(t_int *w)
        out[0] = in[0]; out[1] = in[1]; out[2] = in[2]; out[3] = in[3]; 
        out[4] = in[4]; out[5] = in[5]; out[6] = in[6]; out[7] = in[7]; 
     
-        //post("COSA %d\t %d",instancias_ejecutadas,instancias_cacho);
+        //post("COSA %d\t %d",*(x->x_executed),instancias_cacho);
 
-        if( instancias_ejecutadas==instancias_cacho )
+        if( *(x->x_executed)==*(x->x_total_instances) )
         {
            in[0] = 0; in[1] = 0; in[2] = 0; in[3] = 0; 
            in[4] = 0; in[5] = 0; in[6] = 0; in[7] = 0;                 
@@ -113,9 +138,9 @@ t_int *cacho_tilde_perf8(t_int *w)
        
     }
         
-    instancias_ejecutadas++;
-    if(instancias_ejecutadas>instancias_cacho)
-        instancias_ejecutadas=0;
+	*(x->x_executed) = *(x->x_executed) + 1;
+    if(*(x->x_executed)>*(x->x_total_instances))
+        *(x->x_executed)=0;
 
     return (w+5);
 }
@@ -134,12 +159,17 @@ void cacho_tilde_dsp(t_cacho_tilde *x, t_signal **sp)
 
 void cacho_tilde_free(t_cacho_tilde *x)
 {
-    instancias_cacho--;
+    *(x->x_total_instances) = *(x->x_total_instances)  - 1;
     
-    if(x->x_instance==0)
+    if(x->x_first==1)
     {
         pd_unbind(&x->x_obj.ob_pd, x->x_sym);
         freebytes(x->x_vec, x->x_n * sizeof(t_sample));
+        post("Cacho: %d %s. No hay más instancias n=%d",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+    }
+    else
+    {
+    	post("Cacho: %d %s. Cantidad de instancias n=%d",cr_i,x->x_sym->s_name,*(x->x_total_instances));
     }
 
     
