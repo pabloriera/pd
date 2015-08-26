@@ -7,7 +7,6 @@
 static t_class *cacho_tilde_class;
 
 char cr_names[40][20];
-
 int cr_i=0;
 
 typedef struct _cacho_tilde
@@ -47,7 +46,6 @@ void *cacho_tilde_new(t_symbol *s)
     if(nuevo == 1)
     {
     	
-
     	strcpy( cr_names[cr_i] , s->s_name );
 		cr_i++;
         
@@ -55,6 +53,7 @@ void *cacho_tilde_new(t_symbol *s)
         x->x_vec = (t_sample *)getbytes(DEFSENDVS * sizeof(t_sample));
         memset((char *)(x->x_vec), 0, DEFSENDVS * sizeof(t_sample));    
 
+        //Memory allocation for shared variables between instances
         x->x_total_instances  = getbytes(sizeof(int));
         x->x_executed = getbytes(sizeof(int));
 		
@@ -63,10 +62,11 @@ void *cacho_tilde_new(t_symbol *s)
 
 		post("Cacho: %d %s. Cacho nuevo. Instancia n=%d",cr_i,s->s_name,*(x->x_total_instances));
 		x->x_first = 1;
+
     }
     else
     {   
-    
+    	
         t_cacho_tilde *catcher = (t_cacho_tilde *)pd_findbyclass((x->x_sym = s), cacho_tilde_class);
         x->x_vec = catcher->x_vec;
 
@@ -128,8 +128,6 @@ t_int *cacho_tilde_perf8(t_int *w)
        out[0] = in[0]; out[1] = in[1]; out[2] = in[2]; out[3] = in[3]; 
        out[4] = in[4]; out[5] = in[5]; out[6] = in[6]; out[7] = in[7]; 
     
-        //post("COSA %d\t %d",*(x->x_executed),instancias_cacho);
-
         if( *(x->x_executed)==*(x->x_total_instances) )
         {
            in[0] = 0; in[1] = 0; in[2] = 0; in[3] = 0; 
@@ -159,7 +157,7 @@ void cacho_tilde_dsp(t_cacho_tilde *x, t_signal **sp)
 
 void cacho_tilde_free(t_cacho_tilde *x)
 {
-    *(x->x_total_instances) = *(x->x_total_instances)  - 1;
+    *(x->x_total_instances) = *(x->x_total_instances) - 1;
     
     if(x->x_first==1)
     {

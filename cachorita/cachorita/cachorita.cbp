@@ -41,7 +41,7 @@
 			</Target>
 		</Build>
 		<Linker>
-			<Add library="./pd.dll" />
+			<Add library=".\pd.dll" />
 		</Linker>
 		<Unit filename="../cachorita.c">
 			<Option compilerVar="CC" />
