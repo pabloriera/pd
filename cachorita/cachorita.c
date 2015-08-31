@@ -2,12 +2,10 @@
 #include <string.h>
 
 #define DEFSENDVS 64    /* LATER get send to get this from canvas */
+#define DEBUG 1
 
 /* ----------------------------- cacho~ ----------------------------- */
 static t_class *cacho_tilde_class;
-
-char cr_names[40][20];
-int cr_i=0;
 
 typedef struct _cacho_tilde
 {
@@ -18,8 +16,16 @@ typedef struct _cacho_tilde
     int x_first;
     int* x_executed;
     int* x_total_instances;
+    int cr_i_am;
+    int instance;
 
 } t_cacho_tilde;
+
+
+char cr_names[40][20];
+int cr_i=0;
+void *cr_class[40];
+
 
 void *cacho_tilde_new(t_symbol *s)
 {
@@ -37,6 +43,7 @@ void *cacho_tilde_new(t_symbol *s)
     {
     	if( strcmp(  cr_names[i], s->s_name )==0 )
     	{
+            x->cr_i_am = i;
     		nuevo = 0;
     		break;
     	}
@@ -45,9 +52,13 @@ void *cacho_tilde_new(t_symbol *s)
     
     if(nuevo == 1)
     {
-    	
+    	// cr_class[cr_i] = (t_cacho_tilde *)getbytes( sizeof(t_cacho_tilde) );
+        // memcpy( cr_class[cr_i], x, 1);
+        cr_class[cr_i] = &x->x_obj.ob_pd;
+
+
     	strcpy( cr_names[cr_i] , s->s_name );
-		cr_i++;
+        x->cr_i_am = cr_i;
         
         pd_bind(&x->x_obj.ob_pd, s);
         x->x_vec = (t_sample *)getbytes(DEFSENDVS * sizeof(t_sample));
@@ -60,7 +71,12 @@ void *cacho_tilde_new(t_symbol *s)
 		*(x->x_total_instances) = 0;
 		*(x->x_executed) = 0;
 
-		post("Cacho: %d %s. Cacho nuevo. Instancia n=%d",cr_i,s->s_name,*(x->x_total_instances));
+        x->instance = 0;
+
+		post("Cacho: %d %s. Cacho nuevo. Instancia n=%d",x->cr_i_am,s->s_name,*(x->x_total_instances));
+        if (DEBUG) printf("Cacho: %d %s. Cacho nuevo. Instancia n=%d\n",x->cr_i_am,s->s_name,*(x->x_total_instances));
+
+        cr_i++;
 		x->x_first = 1;
 
     }
@@ -74,10 +90,12 @@ void *cacho_tilde_new(t_symbol *s)
 
         *(x->x_total_instances) = *(x->x_total_instances) + 1 ;
 
+        x->instance = *(x->x_total_instances);
+
         x->x_executed = catcher->x_executed;
 
-		post("Cacho: %d %s. Cacho existente. Instancia n=%d",cr_i,s->s_name,*(x->x_total_instances));
-		
+		post("Cacho: %d %s. Cacho existente. Instancia n=%d",x->cr_i_am,s->s_name,*(x->x_total_instances));
+		if(DEBUG) printf("Cacho: %d %s. Cacho existente. Instancia n=%d\n",x->cr_i_am,s->s_name,*(x->x_total_instances));
 
     }
 
@@ -159,16 +177,52 @@ void cacho_tilde_free(t_cacho_tilde *x)
 {
     *(x->x_total_instances) = *(x->x_total_instances) - 1;
     
-    if(x->x_first==1)
+    // if(*(x->x_total_instances)==0) //one left alone
+   
+
+    if(*(x->x_total_instances)==-1)//all gone
     {
-        pd_unbind(&x->x_obj.ob_pd, x->x_sym);
+        // pd_unbind(&x->x_obj.ob_pd, x->x_sym);
+        
+        
+        pd_unbind( cr_class[x->cr_i_am], x->x_sym);
+
+        strcpy( cr_names[x->cr_i_am] , "" );
+
         freebytes(x->x_vec, x->x_n * sizeof(t_sample));
-        post("Cacho: %d %s. No hay más instancias n=%d",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+
+        freebytes(x->x_total_instances, sizeof(int) );
+        freebytes(x->x_executed, sizeof(int) );
+
+        post("Cacho: %d %s. Se borró la %d. No hay más instancias. ",x->cr_i_am,x->x_sym->s_name,x->instance );
+        if(DEBUG) printf("Cacho: %d %s. Se borró la %d. No hay más instancias \n",x->cr_i_am,x->x_sym->s_name,x->instance );
+
     }
     else
     {
-    	post("Cacho: %d %s. Cantidad de instancias n=%d",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+        post("Cacho: %d %s. Se borró la %d. Cantidad de instancias n=%d",x->cr_i_am,x->x_sym->s_name,x->instance ,*(x->x_total_instances));
+        if(DEBUG) printf("Cacho: %d %s. Se borró la %d. Cantidad de instancias n=%d\n",x->cr_i_am,x->x_sym->s_name,x->instance ,*(x->x_total_instances));
+        if(DEBUG) printf("%g\n", x->x_vec[0]);
     }
+
+
+
+    // if(x->x_first==1)
+    // {
+    //     pd_unbind(&x->x_obj.ob_pd, x->x_sym);
+    //     freebytes(x->x_vec, x->x_n * sizeof(t_sample));
+
+    //     freebytes(x->x_total_instances, sizeof(int) );
+    //     freebytes(x->x_executed, sizeof(int) );
+
+    //     post("Cacho: %d %s. No hay más instancias n=%d",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+    //     if(DEBUG) printf("Cacho: %d %s. No hay más instancias n=%d\n",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+    // }
+    // else
+    // {
+    // 	post("Cacho: %d %s. Cantidad de instancias n=%d",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+    //     if(DEBUG) printf("Cacho: %d %s. Cantidad de instancias n=%d\n",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+    // }
 
     
 }
