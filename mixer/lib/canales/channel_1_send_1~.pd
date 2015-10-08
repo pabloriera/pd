@@ -1,9 +1,9 @@
-#N canvas 732 63 536 467 10;
+#N canvas 463 262 536 467 10;
 #X declare -lib cachorita;
 #X declare -path lib;
 #X text 108 13 \$1 nombre del canal \$2 in (etiqueta) \$3 out (etiqueta)
 \$4 envio 1 (etiqueta) \$5;
-#N canvas 649 173 614 196 eq~ 0;
+#N canvas 361 395 614 196 eq~ 0;
 #X obj 20 18 inlet~;
 #X obj 19 91 outlet~;
 #X obj 64 18 r /\$1/eq_params;
@@ -29,6 +29,10 @@
 #X obj 270 48 loadbang;
 #X obj 19 54 eq7.mmb~;
 #X obj 85 89 spectrum.mmb~ /\$1/spectrum;
+#X obj 185 -7 loadbang;
+#X obj 185 -30 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 185 17 coefflist 1;
 #X connect 0 0 7 0;
 #X connect 2 0 7 1;
 #X connect 3 0 8 1;
@@ -37,6 +41,9 @@
 #X connect 7 0 1 0;
 #X connect 7 0 8 0;
 #X connect 7 1 5 0;
+#X connect 9 0 11 0;
+#X connect 10 0 9 0;
+#X connect 11 0 7 1;
 #X restore -26 139 pd eq~;
 #N canvas 677 110 293 311 solo-mute-signal~ 0;
 #X obj 75 185 r mute_all;
@@ -63,15 +70,15 @@
 #X obj -77 18 inlet~;
 #X obj -76 227 outlet~;
 #X obj 18 227 outlet~;
-#X obj 116 48 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
-#X obj 51 51 / 127;
-#X obj 65 80 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0 10
+#X obj 116 48 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 0 256;
-#X obj -43 155 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
-#X obj 51 152 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
+#X obj 51 51 / 127;
+#X obj 65 80 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj -43 155 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 51 152 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
 #X msg -43 110 1;
 #X obj -43 133 -;
 #X obj -43 90 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -128,8 +135,8 @@
 #X obj -25 15 import cachorita;
 #N canvas 949 236 450 300 vu_signal 0;
 #X obj 13 119 multiplex 0 1;
-#X obj 108 119 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
+#X obj 108 119 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
 #X obj 88 74 r vu_control;
 #X obj 13 11 r /\$1/vu_pre;
 #X obj 215 117 multiplex 0 1;
@@ -150,8 +157,8 @@
 #X restore 285 120 pd vu_signal;
 #X obj -26 86 cacho~ \$2;
 #X obj -25 40 path lib;
-#N canvas 701 128 412 272 send-prepost 0;
-#X obj -3 67 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0 10
+#N canvas 698 133 412 272 send-prepost 0;
+#X obj -3 67 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 0 256;
 #X obj 109 70 multiplex~ 0 1;
 #X obj -3 28 r bus_control;
@@ -163,8 +170,8 @@
 #X obj 21 124 outlet~;
 #X obj 22 84 *~ 0;
 #X obj 148 53 / 127;
-#X obj 148 84 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
+#X obj 148 84 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
 #X obj 21 22 r~ \$0_send;
 #X obj 148 22 r /\$1/send1;
 #X connect 1 0 0 0;

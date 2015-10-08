@@ -2,19 +2,21 @@
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
-#X obj 136 276 vu 15 120 empty empty -1 -8 0 10 -66577 -1 0 0;
-#X obj 147 461 tgl 17 0 empty empty M 5 9 0 12 -257985 -1 -4160 0 1
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X obj 142 276 vu 15 120 empty empty -1 -8 0 10 -66577 -1 0 0;
+#X obj 153 461 tgl 17 0 empty empty M 5 9 0 12 -257985 -1 -4160 0 1
 ;
-#X obj 147 481 tgl 17 0 empty empty S 5 9 0 12 -258113 -1 -262144 0
+#X obj 153 481 tgl 17 0 empty empty S 5 9 0 12 -258113 -1 -262144 0
 1;
-#X obj 153 276 vu 15 120 empty empty -1 -8 0 10 -66577 -1 0 0;
-#X obj 101 276 vsl 34 119 0 127 0 0 empty empty empty 0 -9 0 10 -99776
+#X obj 159 276 vu 15 120 empty empty -1 -8 0 10 -66577 -1 0 0;
+#X obj 631 422 vsl 34 119 0 127 0 0 empty empty empty 0 -9 0 10 -99776
 -16662 -1 0 1;
-#X obj 102 438 knob 32 32 0 127 0 1 empty empty PAN 6 15 0 12 -262144
+#X obj 845 455 knob 32 32 0 127 0 1 empty empty PAN 6 15 0 12 -262144
 -258113 -258113 1562 1;
 #X obj 171 534 knob 32 32 0 127 0 1 empty empty BUS 6 15 0 12 -4032
 -260097 -260097 0 1;
-#X obj 112 410 bng 17 250 50 0 empty empty C 20 10 0 12 -258113 -1
+#X obj 855 427 bng 17 250 50 0 empty empty C 20 10 0 12 -258113 -1
 -258113;
 #X obj 116 531 tgl 17 0 empty empty E 5 9 0 12 -4160 -1 -262144 0 1
 ;
@@ -25,9 +27,9 @@
 -1 -1 0 1;
 #X obj 186 235 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 147 422 tgl 17 0 empty empty pre 20 9 0 12 -262144 -1 -4160
+#X obj 153 422 tgl 17 0 empty empty pre 20 9 0 12 -262144 -1 -4160
 0 1;
-#X obj 147 402 tgl 17 0 empty empty fase 20 9 0 12 -262144 -1 -4160
+#X obj 153 402 tgl 17 0 empty empty fase 20 9 0 12 -262144 -1 -4160
 0 1;
 #X text 129 13 CONTROL;
 #X obj 672 3 cnv 15 170 120 empty empty Canvas 20 12 0 14 -233017 -66577
@@ -68,18 +70,18 @@
 #X msg -188 189 set \$1;
 #X obj -60 166 r \$0_label_3;
 #X obj -188 167 state_io /\$1/send1;
-#X obj 45 140 init 0;
-#X msg -191 440 set \$1;
-#X obj -191 420 state_io /\$1/pan;
-#X obj -166 400 r \$0_label_2;
-#X obj 50 409 init 64;
+#X obj 52 150 init 0;
+#X msg 684 463 set \$1;
+#X obj 684 443 state_io /\$1/pan;
+#X obj 709 423 r \$0_label_2;
+#X obj 793 426 init 64;
 #X obj 212 482 s solo_toggle;
 #X obj 297 482 s /\$1/solo_signal;
 #X obj 212 462 init 0;
 #X obj 255 462 s /\$1/mute_signal;
-#X msg -193 338 set \$1;
-#X obj -88 290 r \$0_label_1;
-#X obj -193 314 state_io /\$1/fader;
+#X msg 512 468 set \$1;
+#X obj 550 423 r \$0_label_1;
+#X obj 512 444 state_io /\$1/fader;
 #X obj 737 52 r canvas_name_\$0;
 #X obj 444 56 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
@@ -108,7 +110,11 @@
 #X restore 101 121 graph;
 #X obj 101 101 cnv 15 100 20 empty canvas_set_\$0 CH1 10 10 0 14 -233017
 -66577 0;
-#X obj 147 441 button_editor;
+#X obj 630 395 init 0;
+#X obj -16 276 r canvas_name_\$0;
+#X obj 153 441 ui_editor;
+#X obj 103 273 ui_fader \$1;
+#X obj 102 404 ui_pan \$1;
 #X connect 1 0 57 0;
 #X connect 2 0 54 0;
 #X connect 2 0 55 0;
@@ -126,8 +132,6 @@
 #X connect 30 0 31 0;
 #X connect 32 0 63 0;
 #X connect 33 0 34 0;
-#X connect 34 0 23 0;
-#X connect 34 0 24 0;
 #X connect 34 0 37 0;
 #X connect 34 0 36 0;
 #X connect 34 0 38 0;
@@ -143,7 +147,6 @@
 #X connect 47 0 48 1;
 #X connect 48 0 46 0;
 #X connect 49 0 11 0;
-#X connect 49 0 4 0;
 #X connect 50 0 5 0;
 #X connect 51 0 50 0;
 #X connect 52 0 51 1;
@@ -158,5 +161,8 @@
 #X connect 64 0 32 0;
 #X connect 66 0 14 0;
 #X connect 67 0 30 0;
-#X connect 73 0 68 0;
+#X connect 73 0 4 0;
+#X connect 74 0 76 0;
+#X connect 74 0 77 0;
+#X connect 75 0 68 0;
 #X coords 0 -1 1 1 102 400 2 100 100;

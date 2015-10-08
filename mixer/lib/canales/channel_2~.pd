@@ -163,60 +163,6 @@
 #X connect 1 0 0 0;
 #X restore 113 142 pd vuL-pre~;
 #X obj 114 85 cacho~ \$2_R;
-#N canvas 224 223 450 304 ctlmidi 0;
-#X obj 110 -270 + 80;
-#X obj 110 -312 loadbang;
-#X obj 82 -349 ctlin;
-#X obj 82 -188 spigot;
-#X msg 95 -219 1;
-#X msg 130 -218 0;
-#X obj 95 -246 sel;
-#X obj 215 -224 spigot;
-#X obj 215 -164 ctlout;
-#X msg 220 -257 0;
-#X obj 177 -314 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 248 -257 1;
-#X obj 248 -282 del 60;
-#X obj 239 -193 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8
-0 10 -262144 -1 -1 0 256;
-#X obj 17 -317 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
-#X obj 345 -255 line;
-#X obj 345 -226 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8
-0 10 -262144 -1 -1 0 256;
-#X obj 82 -161 s fader_value_\$1;
-#X obj 215 -348 r gain_signal_\$1;
-#X msg 345 -282 \$1 100;
-#X obj 110 -290 i \$3;
-#X obj 345 -307 i \$3;
-#X connect 0 0 6 1;
-#X connect 0 0 8 1;
-#X connect 1 0 20 0;
-#X connect 2 0 3 0;
-#X connect 2 0 10 0;
-#X connect 2 0 14 0;
-#X connect 2 1 6 0;
-#X connect 3 0 17 0;
-#X connect 4 0 3 1;
-#X connect 5 0 3 1;
-#X connect 6 0 4 0;
-#X connect 6 1 5 0;
-#X connect 7 0 8 0;
-#X connect 7 0 13 0;
-#X connect 9 0 7 1;
-#X connect 10 0 9 0;
-#X connect 10 0 12 0;
-#X connect 11 0 7 1;
-#X connect 12 0 11 0;
-#X connect 15 0 16 0;
-#X connect 18 0 7 0;
-#X connect 18 0 21 0;
-#X connect 19 0 15 0;
-#X connect 20 0 0 0;
-#X connect 21 0 19 0;
-#X restore 284 92 pd ctlmidi;
-#X text 350 89 no está funcionando;
 #N canvas 667 174 450 300 vu_signal_S 0;
 #X obj 13 119 multiplex 0 1;
 #X obj 108 119 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
@@ -284,11 +230,11 @@
 #X connect 5 0 8 0;
 #X connect 6 0 1 0;
 #X connect 7 0 9 0;
-#X connect 11 0 21 0;
+#X connect 11 0 19 0;
 #X connect 12 0 13 0;
 #X connect 13 0 14 0;
 #X connect 14 0 3 1;
 #X connect 15 0 12 0;
-#X connect 16 0 22 0;
-#X connect 21 0 6 0;
-#X connect 22 0 15 0;
+#X connect 16 0 20 0;
+#X connect 19 0 6 0;
+#X connect 20 0 15 0;

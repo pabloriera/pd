@@ -11,16 +11,28 @@
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
 #X declare -path lib/canales;
 #X declare -path lib;
-#X declare -path extra/state_manager;
 #X declare -path extra/mmb;
+#X declare -path extra/state;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
 #X obj 231 463 state_manager;
 #X msg 173 499 states;
 #X obj 573 463 cnv 15 120 130 empty empty Paginas 20 12 0 14 -204800
@@ -28,20 +40,26 @@
 #X msg 585 507 0;
 #X msg 617 507 1;
 #X obj 585 532 s page_number;
-#X obj 824 -5 channel_2 SEND1 SEND1 MASTER \;;
+#X obj 924 -4 channel_2 SEND1 SEND1 MASTER;
+#X obj 1047 -4 channel_2 MASTER MASTER DAC;
 #X obj 12 509 path extra;
 #X obj 367 463 setup-control;
 #X obj 13 -4 channel_1_send_1 CH1;
 #X obj 124 -4 channel_1_send_1 CH2;
-#X obj 926 -5 channel_2 SEND2 SEND2 MASTER \;;
-#X obj 1028 -5 channel_2 SEND3 SEND3 MASTER;
-#X obj 1130 -5 channel_2 SEND4 SEND4 MASTER;
-#X obj 1236 -5 channel_2 MASTER MASTER DAC;
+#X obj 233 -4 channel_1_send_1 CH3;
+#X obj 344 -4 channel_1_send_1 CH4;
+#X obj 453 -4 channel_1_send_1 CH5;
+#X obj 564 -4 channel_1_send_1 CH6;
+#X obj 673 -4 channel_1_send_1 CH7;
+#X obj 784 -4 channel_1_send_1 CH8;
+
+
 #X obj 12 487 path lib/canales;
 #X obj 12 465 path lib;
-#X obj 12 530 path extra/state_manager;
 #X obj 12 551 path extra/mmb;
 #X obj 585 554 pages;
+#X obj 12 530 path extra/state;
+
 #X connect 0 0 1 0;
 #X connect 1 0 0 0;
 #X connect 3 0 5 0;
