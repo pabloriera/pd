@@ -1,0 +1,19 @@
+#N canvas 139 346 450 300 10;
+#X obj 120 21 inlet;
+#X text 53 1 audio;
+#X obj 53 21 inlet~;
+#X obj 53 116 outlet~;
+#X text 121 2 MUTE;
+#X obj 146 119 outlet~;
+#X text 53 130 audio mute;
+#X text 146 133 audio solo;
+#X obj 52 82 demultiplex~ 0 1;
+#X obj 7 59 init 0;
+#X obj 120 48 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 0 256;
+#X connect 0 0 8 0;
+#X connect 0 0 10 0;
+#X connect 2 0 8 0;
+#X connect 8 0 3 0;
+#X connect 8 1 5 0;
+#X connect 9 0 8 0;

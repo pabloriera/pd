@@ -1,0 +1,66 @@
+#N canvas 827 149 1107 458 10;
+#X declare -lib pdcontainer -lib tof;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X obj 248 159 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 248 135 r /eq/valor1;
+#X obj 247 195 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 247 216 s /eq/valor1;
+#X obj 24 -48 state_manager;
+#X obj 230 304 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 230 280 r /delay/valor1;
+#X msg 23 137 eq;
+#X obj 730 192 s objeto3_1;
+#X obj 728 113 s /tabla/data;
+#X obj 133 101 objeto2 1 eq;
+#X obj 507 86 objeto3 1 tabla;
+#X msg 730 164 tablon;
+#X obj 729 277 s /tablon/data;
+#X msg 777 164 tabla;
+#X msg 839 247 resize 512 \, sinesum 256 1;
+#X msg 729 221 resize 9 \, 0 -0.1 -0.2 -0.3 -0.4 -0.5 -0.6 -0.7 -0.8
+-0.9;
+#X msg 480 16 resize 9;
+#X msg 728 86 resize 9 \, 0 0.1 0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9;
+#X obj 724 52 s /tabla/data;
+#X msg 724 28 const 0;
+#X obj 340 160 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 340 136 r /eq/valor2;
+#X obj 507 331 state_io /flanger/valor1;
+#X obj 386 331 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 89 256;
+#X obj 386 352 s /flanger/valor1;
+#X obj 507 354 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 13 256;
+#X msg 24 -72 /home/miles/Copy/pure data/pd_extra/state_manager/xmls
+;
+#X obj 169 238 objeto2 3 delay;
+#X obj 202 69 objeto2 2;
+#X obj 23 193 s objeto2_1;
+#X msg 58 138 delay;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 6 0 5 0;
+#X connect 7 0 30 0;
+#X connect 12 0 8 0;
+#X connect 14 0 8 0;
+#X connect 15 0 13 0;
+#X connect 16 0 13 0;
+#X connect 17 0 11 0;
+#X connect 18 0 9 0;
+#X connect 20 0 19 0;
+#X connect 22 0 21 0;
+#X connect 23 0 26 0;
+#X connect 24 0 25 0;
+#X connect 27 0 4 0;
+#X connect 31 0 30 0;
