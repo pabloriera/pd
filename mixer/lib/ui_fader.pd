@@ -1,0 +1,17 @@
+#N canvas 503 167 326 300 10;
+#X declare -lib pdcontainer;
+#X msg -140 51 /\$1/fader;
+#X obj -140 78 s \$0_label;
+#X obj 101 103 vsl 34 119 0 127 0 0 empty empty empty 0 -9 0 10 -99776
+-16662 -1 4500 1;
+#X obj 20 55 r \$0_label;
+#X obj -54 79 state_io_set /\$1/fader;
+#X obj 101 67 init 0;
+#X obj -140 25 inlet;
+#X connect 0 0 1 0;
+#X connect 2 0 4 0;
+#X connect 3 0 4 1;
+#X connect 4 0 2 0;
+#X connect 5 0 2 0;
+#X connect 6 0 0 0;
+#X coords 0 -1 1 1 36 125 2 100 100;

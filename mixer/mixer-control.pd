@@ -1,13 +1,10 @@
-#N canvas 4 83 1364 610 10;
+#N canvas 117 110 1090 635 10;
 #X declare -lib pdcontainer -lib tof;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
 #X declare -path extra;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
@@ -24,43 +21,32 @@
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X obj 231 463 state_manager;
-#X msg 173 499 states;
-#X obj 573 463 cnv 15 120 130 empty empty Paginas 20 12 0 14 -204800
--66577 0;
-#X msg 585 507 0;
-#X msg 617 507 1;
-#X obj 585 532 s page_number;
-#X obj 924 -4 channel_2 SEND1 SEND1 MASTER;
-#X obj 1047 -4 channel_2 MASTER MASTER DAC;
-#X obj 12 509 path extra;
-#X obj 367 463 setup-control;
-#X obj 13 -4 channel_1_send_1 CH1;
-#X obj 124 -4 channel_1_send_1 CH2;
-#X obj 233 -4 channel_1_send_1 CH3;
-#X obj 344 -4 channel_1_send_1 CH4;
-#X obj 453 -4 channel_1_send_1 CH5;
-#X obj 564 -4 channel_1_send_1 CH6;
-#X obj 673 -4 channel_1_send_1 CH7;
-#X obj 784 -4 channel_1_send_1 CH8;
-
-
-#X obj 12 487 path lib/canales;
-#X obj 12 465 path lib;
-#X obj 12 551 path extra/mmb;
-#X obj 585 554 pages;
-#X obj 12 530 path extra/state;
-
+#X obj 13 413 state_manager;
+#X msg -33 492 states;
+#X obj 474 3 channel_2 SEND1 SEND1 MASTER;
+#X obj 602 3 channel_2 MASTER MASTER DAC;
+#X obj 735 60 path extra;
+#X obj 149 414 setup-control;
+#X obj 13 3 channel_1_send_1 CH1;
+#X obj 735 38 path lib/canales;
+#X obj 735 16 path lib;
+#X obj 735 102 path extra/mmb;
+#X obj 735 125 pages;
+#X obj 735 81 path extra/state;
+#X obj 370 441 hradio 25 1 0 2 page_number empty Páginas 0 -13 0 16
+-262144 -1 -1 1;
+#X obj 124 3 channel_1_send_1 CH2;
+#X obj 233 3 channel_1_send_1 CH3;
+#X obj 344 3 channel_1_send_1 CH4;
+#X msg 887 31 CH1;
+#X msg 921 31 CH5;
+#X obj 887 66 s channel_1_send_1_1;
+#X obj 887 117 s /CH1/fader;
+#X obj 887 95 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
 #X connect 0 0 1 0;
 #X connect 1 0 0 0;
-#X connect 3 0 5 0;
-#X connect 4 0 5 0;
+#X connect 16 0 18 0;
+#X connect 17 0 18 0;
+#X connect 20 0 19 0;
+#X coords 0 -1 1 1 700 530 1 10 0;
