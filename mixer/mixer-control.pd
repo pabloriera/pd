@@ -1,4 +1,4 @@
-#N canvas 271 92 1090 635 10;
+#N canvas 269 97 1090 635 10;
 #X declare -lib pdcontainer -lib tof;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
@@ -42,7 +42,7 @@
 #X obj 13 423 state_manager;
 #X obj 602 3 channel_2 MASTER MASTER DAC;
 #X obj 735 60 path extra;
-#X obj 149 414 setup-control;
+#X obj 151 423 setup-control;
 #X obj 13 3 channel_1_send_1 CH1;
 #X obj 735 38 path lib/canales;
 #X obj 735 16 path lib;
@@ -50,27 +50,27 @@
 #X obj 735 125 pages;
 #X obj 735 81 path extra/state;
 #X obj 370 441 hradio 25 1 0 2 page_number empty Páginas 0 -13 0 16
--262144 -1 -1 1;
+-262144 -1 -1 0;
 #X msg 887 31 CH1;
 #X msg 921 31 CH5;
 #X obj 887 66 s channel_1_send_1_1;
 #X obj 887 117 s /CH1/fader;
 #X obj 887 95 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 124 3 channel_1_send_1 CH2;
-#X obj 233 3 channel_1_send_1 CH3;
-#X obj 344 3 channel_1_send_1 CH4;
 #X obj 474 3 channel_2 SEND1 SEND1 MASTER;
 #X obj 144 532 loadbang;
 #X msg 152 590 folder ../../presets;
 #X msg 125 612 file init.xml;
 #X obj 125 564 t b b;
+#X obj 124 3 channel_1_send_1 CH2;
+#X obj 233 3 channel_1_send_1 CH3;
+#X obj 344 3 channel_1_send_1 CH4;
 #X connect 11 0 13 0;
 #X connect 12 0 13 0;
 #X connect 15 0 14 0;
-#X connect 20 0 23 0;
-#X connect 21 0 0 0;
-#X connect 22 0 0 0;
-#X connect 23 0 22 0;
-#X connect 23 1 21 0;
+#X connect 17 0 20 0;
+#X connect 18 0 0 0;
+#X connect 19 0 0 0;
+#X connect 20 0 19 0;
+#X connect 20 1 18 0;
 #X coords 0 -1 1 1 700 530 2 10 0;

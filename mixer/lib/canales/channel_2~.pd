@@ -1,9 +1,9 @@
-#N canvas 167 83 1128 425 10;
+#N canvas 289 112 504 475 10;
 #X declare -lib cachorita;
 #X declare -path libreria;
 #X text 108 13 \$1 nombre del canal \$2 in (etiqueta) \$3 out (etiqueta)
 \$4 envio 1 (etiqueta) \$5;
-#N canvas 609 263 450 300 eq~ 1;
+#N canvas 609 263 450 300 eq~ 0;
 #X obj 10 48 inlet~;
 #X obj 9 121 outlet~;
 #X obj 54 48 r /\$1/eq_params;
@@ -66,43 +66,6 @@
 #X connect 8 0 1 0;
 #X connect 9 0 6 1;
 #X restore -26 225 pd solo-mute-signal~;
-#N canvas 650 246 450 300 pan-stereo~ 0;
-#X obj -77 18 inlet~;
-#X obj -76 227 outlet~;
-#X obj 18 227 outlet~;
-#X obj 116 48 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
-#X obj 51 51 / 127;
-#X obj 65 80 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj -43 155 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
-#X obj 51 152 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
-#X msg -43 110 1;
-#X obj -43 133 -;
-#X obj -43 90 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 17 18 inlet~;
-#X obj -76 175 *~ 0.5;
-#X obj 18 175 *~ 0.5;
-#X obj 71 18 r /\$1/pan_control;
-#X connect 0 0 12 0;
-#X connect 4 0 5 0;
-#X connect 4 0 9 1;
-#X connect 4 0 10 0;
-#X connect 4 0 7 0;
-#X connect 6 0 12 1;
-#X connect 7 0 13 1;
-#X connect 8 0 9 0;
-#X connect 9 0 6 0;
-#X connect 10 0 8 0;
-#X connect 11 0 13 0;
-#X connect 12 0 1 0;
-#X connect 13 0 2 0;
-#X connect 14 0 4 0;
-#X connect 14 0 3 0;
-#X restore 3 332 pd pan-stereo~;
 #N canvas 486 153 450 300 fader~ 0;
 #X obj -811 -155 gain~ 50;
 #X obj -811 -202 inlet~;
@@ -194,8 +157,8 @@
 #X obj 114 85 cacho~ \$2_R;
 #N canvas 667 174 450 300 vu_signal_S 0;
 #X obj 13 119 multiplex 0 1;
-#X obj 108 119 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 0 256;
+#X obj 108 119 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
 #X obj 205 117 multiplex 0 1;
 #X obj 13 16 r /\$1/vuL_pre;
 #X obj 50 37 r /\$1/vuL_post;
@@ -251,19 +214,42 @@
 #X connect 6 0 3 0;
 #X connect 7 0 3 0;
 #X restore 114 115 pd fase;
+#N canvas 644 261 450 300 pan-stereo~ 0;
+#X obj -77 18 inlet~;
+#X obj -76 227 outlet~;
+#X obj 18 227 outlet~;
+#X obj 72 46 / 127;
+#X obj 17 18 inlet~;
+#X obj -76 175 *~ 0.5;
+#X obj 18 175 *~ 0.5;
+#X obj 72 -5 r /\$1/pan;
+#X obj -43 133 -;
+#X msg -43 108 1 \$1;
+#X obj 72 21 clip 0 127;
+#X connect 0 0 5 0;
+#X connect 3 0 9 0;
+#X connect 3 0 6 1;
+#X connect 4 0 6 0;
+#X connect 5 0 1 0;
+#X connect 6 0 2 0;
+#X connect 7 0 10 0;
+#X connect 8 0 5 1;
+#X connect 9 0 8 0;
+#X connect 10 0 3 0;
+#X restore 7 321 pd pan-stereo~;
 #X connect 1 0 2 0;
-#X connect 2 0 4 0;
-#X connect 3 0 5 0;
-#X connect 3 1 7 0;
-#X connect 4 0 3 0;
-#X connect 5 0 8 0;
-#X connect 6 0 1 0;
-#X connect 7 0 9 0;
-#X connect 11 0 19 0;
+#X connect 2 0 3 0;
+#X connect 3 0 20 0;
+#X connect 4 0 7 0;
+#X connect 5 0 1 0;
+#X connect 6 0 8 0;
+#X connect 10 0 18 0;
+#X connect 11 0 12 0;
 #X connect 12 0 13 0;
-#X connect 13 0 14 0;
-#X connect 14 0 3 1;
-#X connect 15 0 12 0;
-#X connect 16 0 20 0;
-#X connect 19 0 6 0;
-#X connect 20 0 15 0;
+#X connect 13 0 20 1;
+#X connect 14 0 11 0;
+#X connect 15 0 19 0;
+#X connect 18 0 5 0;
+#X connect 19 0 14 0;
+#X connect 20 0 4 0;
+#X connect 20 1 6 0;

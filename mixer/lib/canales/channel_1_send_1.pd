@@ -1,4 +1,4 @@
-#N canvas 93 92 1268 620 10;
+#N canvas 239 83 1039 533 10;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
@@ -21,15 +21,15 @@
 -233017 -66577 0;
 #X msg 516 54 vis \$1;
 #X obj 516 75 s pd-editor\$1;
-#X obj 504 181 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+#X obj 514 181 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 1 256;
-#X obj 504 230 iem_receive;
-#X obj 504 260 symbol;
+#X obj 514 230 iem_receive;
+#X obj 514 260 symbol;
 #X obj 675 101 s canvas_set_\$0;
-#X obj 504 290 s canvas_name_\$0;
+#X obj 514 290 s canvas_name_\$0;
 #X obj 737 52 r canvas_name_\$0;
-#X msg 504 203 set channel_1_send_1_\$1;
-#X obj 504 159 sfruit/instance channel_1_send_1;
+#X msg 514 203 set channel_1_send_1_\$1;
+#X obj 514 159 sfruit/instance channel_1_send_1;
 #X obj 516 32 r \$0_editor;
 #X obj 212 443 s \$0_editor;
 #N canvas 428 416 937 319 editor\$1 0;
@@ -56,7 +56,7 @@
 #X array /\$1/spectrum 256 float 0;
 #X coords 0 1 256 0 100 70 1 0 0;
 #X restore 101 121 graph;
-#X obj 101 101 cnv 15 100 20 empty canvas_set_\$0 CH5 10 10 0 14 -233017
+#X obj 101 101 cnv 15 100 20 empty canvas_set_\$0 CH1 10 10 0 14 -233017
 -66577 0;
 #X obj 153 461 ui_mute \$1;
 #X obj 239 292 iem_receive /\$1/vuL_control;
