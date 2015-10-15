@@ -1,4 +1,4 @@
-#N canvas 516 284 607 285 10;
+#N canvas 406 213 714 387 10;
 #X obj 67 117 t f f;
 #X obj 67 211 s;
 #X msg 115 182 symbol channel_1_send_1_\$1;
@@ -13,13 +13,16 @@
 #X msg 249 13 0;
 #X msg 281 13 1;
 #X obj 249 39 s page_number;
-#X obj 156 67 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
--262144 -1 -1 4 256;
-#X obj -130 243 state_read;
-#X msg -130 211 /\$1/fader;
-#X msg -60 211 /\$1/pan;
-#X msg 0 211 /\$1/send1;
-#X obj -60 186 symbol;
+#X obj 156 67 nbx 5 14 -1e+037 1e+037 0 1 empty empty empty 0 -8 0
+10 -262144 -1 -1 4 256;
+#X obj -60 334 state_read;
+#X msg -230 271 /\$1/fader;
+#X msg -160 271 /\$1/pan;
+#X msg -100 271 /\$1/send1;
+#X obj -60 206 symbol;
+#X msg -30 271 /\$1/fase;
+#X msg 30 271 /\$1/mute;
+#X msg 90 271 /\$1/solo;
 #X connect 0 0 8 0;
 #X connect 0 1 2 0;
 #X connect 2 0 1 1;
@@ -42,3 +45,9 @@
 #X connect 18 0 15 0;
 #X connect 18 0 16 0;
 #X connect 18 0 17 0;
+#X connect 18 0 19 0;
+#X connect 18 0 20 0;
+#X connect 18 0 21 0;
+#X connect 19 0 14 0;
+#X connect 20 0 14 0;
+#X connect 21 0 14 0;

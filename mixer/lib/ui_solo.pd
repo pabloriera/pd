@@ -1,0 +1,18 @@
+#N canvas 660 239 666 300 10;
+#X declare -lib pdcontainer;
+#X obj 24 127 s \$0_label;
+#X obj 24 74 inlet;
+#X obj 101 101 tgl 17 0 empty empty Solo 20 9 0 12 -258113 -1 -4160
+0 1;
+#X obj 129 140 s solo_toggle;
+#X msg 24 101 /\$1/solo;
+#X obj 213 43 r \$0_label;
+#X obj 140 67 state_io_set /\$1/solo;
+#X text 218 142 Variable global para solo counter;
+#X connect 1 0 4 0;
+#X connect 2 0 3 0;
+#X connect 2 0 6 0;
+#X connect 4 0 0 0;
+#X connect 5 0 6 1;
+#X connect 6 0 2 0;
+#X coords 0 -1 1 1 19 19 2 100 100;

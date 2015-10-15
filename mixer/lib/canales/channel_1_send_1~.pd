@@ -1,4 +1,4 @@
-#N canvas 463 262 536 467 10;
+#N canvas 678 82 536 467 10;
 #X declare -lib cachorita;
 #X declare -path lib;
 #X text 108 13 \$1 nombre del canal \$2 in (etiqueta) \$3 out (etiqueta)
@@ -45,7 +45,7 @@
 #X connect 10 0 9 0;
 #X connect 11 0 7 1;
 #X restore -26 139 pd eq~;
-#N canvas 677 110 293 311 solo-mute-signal~ 0;
+#N canvas 677 110 293 273 solo-mute-signal~ 0;
 #X obj 75 185 r mute_all;
 #X floatatom 72 69 5 0 0 0 - - -;
 #X obj -11 18 inlet~;
@@ -54,8 +54,8 @@
 #X obj -12 69 solo-signal~;
 #X obj -12 148 mute-signal~;
 #X obj -12 215 muteall-signal~;
-#X obj 57 42 r /\$1/solo_signal;
-#X obj 57 119 r /\$1/mute_signal;
+#X obj 57 42 r /\$1/solo;
+#X obj 57 119 r /\$1/mute;
 #X connect 0 0 7 1;
 #X connect 2 0 5 0;
 #X connect 5 0 6 0;
@@ -191,23 +191,24 @@
 #X connect 8 0 1 0;
 #X connect 9 0 1 1;
 #X restore 285 146 pd send-prepost;
-#N canvas 679 216 456 210 fase 0;
+#N canvas 677 221 456 210 fase 1;
 #X obj -5 13 inlet~;
 #X obj -5 153 outlet~;
 #X obj -5 111 *~;
-#X obj 40 13 r /\$1/fase_signal;
 #X obj 40 40 sel 0 1;
 #X obj 72 75 -1;
 #X obj 40 75 1;
 #X obj 154 14 init 0;
+#X obj 40 13 r /\$1/fase;
+#X obj 154 38 s /\$1/fase;
 #X connect 0 0 2 0;
 #X connect 2 0 1 0;
-#X connect 3 0 4 0;
-#X connect 4 0 6 0;
-#X connect 4 1 5 0;
+#X connect 3 0 5 0;
+#X connect 3 1 4 0;
+#X connect 4 0 2 1;
 #X connect 5 0 2 1;
-#X connect 6 0 2 1;
-#X connect 7 0 4 0;
+#X connect 6 0 8 0;
+#X connect 7 0 3 0;
 #X restore -26 115 pd fase;
 #N canvas 764 262 450 300 vu-pre~ 0;
 #X obj 14 -38 inlet~;

@@ -1,20 +1,13 @@
-#N canvas 116 82 1215 620 10;
+#N canvas 93 92 1268 620 10;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X obj 142 276 vu 15 120 empty empty -1 -8 0 10 -66577 -1 0 0;
-#X obj 153 461 tgl 17 0 empty empty M 5 9 0 12 -257985 -1 -4160 0 1
-;
-#X obj 153 481 tgl 17 0 empty empty S 5 9 0 12 -258113 -1 -262144 0
-1;
 #X obj 159 276 vu 15 120 empty empty -1 -8 0 10 -66577 -1 0 0;
-#X obj 104 235 hsl 80 15 0 127 0 0 empty empty Send_1 5 8 0 10 -262144
--1 -1 0 1;
-#X obj 186 235 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
 #X obj 153 422 tgl 17 0 empty empty pre 20 9 0 12 -262144 -1 -4160
-0 1;
-#X obj 153 402 tgl 17 0 empty empty fase 20 9 0 12 -262144 -1 -4160
 0 1;
 #X text 129 13 CONTROL;
 #X obj 672 3 cnv 15 170 120 empty empty Canvas 20 12 0 14 -233017 -66577
@@ -24,11 +17,6 @@
 #X msg 675 79 label \$1;
 #X obj 498 128 cnv 15 500 250 empty empty State 20 12 0 14 -233017
 -66577 0;
-#X obj 504 347 s \$0_label_3;
-#X obj 859 7 cnv 15 25 40 empty empty empty 20 12 0 14 -4034 -66577
-0;
-#X obj 862 24 tgl 17 0 empty empty IN 1 -7 0 12 -262144 -1 -1 0 1;
-#X obj 862 56 s in_\$1;
 #X obj 498 3 cnv 15 160 120 empty empty Ventana_Emergente 20 12 0 14
 -233017 -66577 0;
 #X msg 516 54 vis \$1;
@@ -38,32 +26,13 @@
 #X obj 504 230 iem_receive;
 #X obj 504 260 symbol;
 #X obj 675 101 s canvas_set_\$0;
-#X obj 582 260 s canvas_name_\$0;
-#X msg 504 320 /\$1/send1;
-#X msg 584 320 /\$1/send2;
-#X msg 664 320 /\$1/send3;
-#X msg 744 320 /\$1/send4;
-#X obj 584 347 s \$0_label_4;
-#X obj 664 347 s \$0_label_5;
-#X obj 744 347 s \$0_label_6;
-#X obj 208 286 r /\$1/vuL_control;
-#X obj 208 307 r /\$1/vuR_control;
-#X msg -159 206 set \$1;
-#X obj -31 183 r \$0_label_3;
-#X obj -159 184 state_io /\$1/send1;
-#X obj 52 150 init 0;
-#X obj 212 482 s solo_toggle;
-#X obj 297 482 s /\$1/solo_signal;
-#X obj 212 462 init 0;
-#X obj 255 462 s /\$1/mute_signal;
+#X obj 504 290 s canvas_name_\$0;
 #X obj 737 52 r canvas_name_\$0;
 #X msg 504 203 set channel_1_send_1_\$1;
 #X obj 504 159 sfruit/instance channel_1_send_1;
-#X obj 285 401 s /\$1/fase_signal;
-#X obj 240 401 init 0;
 #X obj 516 32 r \$0_editor;
 #X obj 212 443 s \$0_editor;
-#N canvas 799 440 937 319 editor\$1 0;
+#N canvas 428 416 937 319 editor\$1 0;
 #X obj 9 223 s /\$1/eq_params;
 #X obj 9 -38 metrum 50 1;
 #X obj 9 15 gui.eq7.mmb \$1;
@@ -72,6 +41,13 @@
 #X connect 2 0 0 0;
 #X connect 3 0 2 0;
 #X restore 516 98 pd editor\$1;
+#X obj -4 257 r canvas_name_\$0;
+#X obj 153 441 ui_editor;
+#X obj 103 273 ui_fader \$1;
+#X obj 102 403 ui_pan \$1;
+#X obj 100 224 ui_send1 \$1;
+#X obj 153 402 ui_fase \$1;
+#X obj 152 480 ui_solo \$1;
 #N canvas 1 82 450 300 (subpatch) 0;
 #X array /\$1/eq_plot 556 float 0;
 #X coords 0 1 554 -1 100 70 1 0 0;
@@ -80,46 +56,40 @@
 #X array /\$1/spectrum 256 float 0;
 #X coords 0 1 256 0 100 70 1 0 0;
 #X restore 101 121 graph;
-#X obj 101 101 cnv 15 100 20 empty canvas_set_\$0 CH1 10 10 0 14 -233017
+#X obj 101 101 cnv 15 100 20 empty canvas_set_\$0 CH5 10 10 0 14 -233017
 -66577 0;
-#X obj -16 276 r canvas_name_\$0;
-#X obj 153 441 ui_editor;
-#X obj 103 273 ui_fader \$1;
-#X obj 102 404 ui_pan \$1;
-#X connect 1 0 42 0;
-#X connect 2 0 39 0;
-#X connect 2 0 40 0;
-#X connect 4 0 37 0;
-#X connect 7 0 46 0;
-#X connect 10 0 12 0;
-#X connect 11 0 10 0;
-#X connect 12 0 24 0;
-#X connect 16 0 17 0;
-#X connect 19 0 20 0;
-#X connect 21 0 44 0;
-#X connect 22 0 23 0;
-#X connect 23 0 26 0;
+#X obj 153 461 ui_mute \$1;
+#X obj 239 292 iem_receive /\$1/vuL_control;
+#X obj 235 349 iem_receive /\$1/vuR_control;
+#X obj 219 182 r canvas_name_\$0;
+#X obj 219 209 unsymbol;
+#X obj 219 234 list;
+#X msg 235 323 set /\$1/vuR_control;
+#X msg 239 266 set /\$1/vuL_control;
+#X connect 5 0 7 0;
+#X connect 6 0 5 0;
+#X connect 7 0 15 0;
+#X connect 10 0 11 0;
+#X connect 12 0 18 0;
+#X connect 13 0 14 0;
+#X connect 14 0 16 0;
+#X connect 17 0 7 0;
+#X connect 18 0 13 0;
+#X connect 19 0 12 0;
+#X connect 20 0 10 0;
 #X connect 23 0 25 0;
-#X connect 23 0 27 0;
+#X connect 23 0 26 0;
 #X connect 23 0 28 0;
 #X connect 23 0 29 0;
-#X connect 26 0 14 0;
-#X connect 27 0 30 0;
-#X connect 28 0 31 0;
-#X connect 29 0 32 0;
-#X connect 33 0 0 0;
-#X connect 34 0 3 0;
-#X connect 35 0 4 0;
-#X connect 36 0 37 1;
-#X connect 37 0 35 0;
-#X connect 38 0 4 0;
-#X connect 41 0 1 0;
-#X connect 43 0 12 0;
-#X connect 44 0 22 0;
-#X connect 45 0 21 0;
-#X connect 47 0 7 0;
-#X connect 48 0 19 0;
-#X connect 54 0 56 0;
-#X connect 54 0 57 0;
-#X connect 55 0 49 0;
+#X connect 23 0 27 0;
+#X connect 23 0 33 0;
+#X connect 24 0 21 0;
+#X connect 34 0 0 0;
+#X connect 35 0 1 0;
+#X connect 36 0 37 0;
+#X connect 37 0 38 0;
+#X connect 38 0 40 0;
+#X connect 38 0 39 0;
+#X connect 39 0 35 0;
+#X connect 40 0 34 0;
 #X coords 0 -1 1 1 102 400 2 100 100;

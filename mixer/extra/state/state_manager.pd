@@ -1,4 +1,4 @@
-#N canvas 364 270 1056 693 10;
+#N canvas 293 82 1056 661 10;
 #X declare -lib pdcontainer -lib tof;
 #X msg 55 243 print;
 #X obj 83 597 s;
@@ -41,8 +41,8 @@
 -262144 -1 -1 0 256;
 #X obj -84 130 t b f;
 #X obj -84 154 s state_load;
-#X obj 103 356 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 75 379 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
 #X obj 43 133 s \$0_filename_number;
 #X obj -104 399 t b b;
 #X obj -77 422 s state_dump;
@@ -51,8 +51,7 @@
 #X obj 388 417 s \$0_filename;
 #X text 477 417 Filename for saving;
 #X obj 388 177 r \$0_filename_number;
-#X msg 527 298 /home/miles/Copy/Osciladores_no_lineales/ode_synth_v3/presets
-;
+#X msg 527 298 states;
 #X obj 540 192 loadbang;
 #X obj 527 243 t b a;
 #X obj 388 224 makefilename %d.xml;
@@ -89,7 +88,15 @@
 #X obj 527 334 l2s;
 #X obj 388 394 makesymbol %s/%s;
 #X obj 623 278 outlet;
-#X obj 682 224 inlet;
+#X obj 740 295 inlet;
+#X obj 651 407 s state_load;
+#X obj 740 324 route folder file;
+#X obj 786 484 s \$0_filename;
+#X obj 786 437 pack s s;
+#X obj 786 413 symbol;
+#X obj 786 461 makesymbol %s/%s;
+#X obj 789 356 t b b a;
+#X obj 826 384 symbol;
 #X connect 0 0 5 0;
 #X connect 2 0 38 0;
 #X connect 3 0 19 0;
@@ -143,6 +150,16 @@
 #X connect 62 0 40 0;
 #X connect 63 0 46 0;
 #X connect 64 0 50 1;
+#X connect 64 0 72 1;
 #X connect 65 0 41 0;
-#X connect 67 0 64 0;
+#X connect 67 0 69 0;
+#X connect 69 0 64 0;
+#X connect 69 1 74 0;
+#X connect 71 0 73 0;
+#X connect 72 0 71 0;
+#X connect 73 0 70 0;
+#X connect 74 0 68 0;
+#X connect 74 1 72 0;
+#X connect 74 2 75 0;
+#X connect 75 0 71 1;
 #X coords 0 -1 1 1 130 100 2 0 0;
