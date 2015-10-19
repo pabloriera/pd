@@ -1,8 +1,5 @@
-#N canvas 493 281 618 435 10;
+#N canvas 201 205 947 522 10;
 #X declare -lib cachorita;
-#X obj -51 336 sig~;
-#X obj -51 313 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 20 256;
 #X obj 146 75 import cachorita;
 #X obj 7 207 rita~ ca;
 #X obj 94 182 cacho~ ca;
@@ -14,30 +11,51 @@
 #X obj 173 207 print~ C;
 #X obj 95 207 print~ B;
 #X obj -105 118 t b b b b;
-#X obj 182 321 cacho~ co;
-#X obj 182 362 snaps~;
-#X obj -50 364 rita~ co;
-#X obj -123 337 sig~;
-#X obj -123 314 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
-10 -262144 -1 -1 29 256;
-#X obj -122 365 rita~ co;
 #X obj -33 21 loadbang;
 #X msg -31 48 \; pd dsp 1;
-#X obj 33 321 cacho~ co;
-#X obj 34 363 snaps~;
-#X connect 0 0 14 0;
-#X connect 1 0 0 0;
-#X connect 4 0 10 0;
-#X connect 5 0 11 0;
-#X connect 6 0 9 0;
-#X connect 7 0 3 0;
-#X connect 7 0 8 0;
-#X connect 11 0 10 0;
-#X connect 11 1 9 0;
-#X connect 11 2 8 0;
-#X connect 11 3 7 0;
-#X connect 12 0 13 0;
-#X connect 15 0 17 0;
-#X connect 16 0 15 0;
+#X obj -51 336 sig~;
+#X obj -51 313 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 14 256;
+#X obj -123 337 sig~;
+#X obj -123 314 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 27 256;
+#X obj 46 311 cacho~ co;
+#X obj 45 336 snaps~;
+#X obj 187 309 cacho~ co;
+#X obj 186 334 snaps~;
+#X obj -50 364 rita~ co;
+#X obj -122 365 rita~ co;
+#X obj 382 248 sig~;
+#X obj 382 225 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 61 256;
+#X obj 310 249 sig~;
+#X obj 310 226 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 31 256;
+#X obj 310 279 rita~ ci;
+#X obj 381 279 rita~ ci;
+#X obj 468 248 snaps~;
+#X obj 469 225 cacho~ ci;
+#X obj 601 247 snaps~;
+#X obj 602 224 cacho~ ci;
+#X connect 2 0 8 0;
+#X connect 3 0 9 0;
+#X connect 4 0 7 0;
+#X connect 5 0 1 0;
+#X connect 5 0 6 0;
+#X connect 9 0 8 0;
+#X connect 9 1 7 0;
+#X connect 9 2 6 0;
+#X connect 9 3 5 0;
+#X connect 10 0 11 0;
+#X connect 12 0 20 0;
+#X connect 13 0 12 0;
+#X connect 14 0 21 0;
+#X connect 15 0 14 0;
+#X connect 16 0 17 0;
 #X connect 18 0 19 0;
-#X connect 20 0 21 0;
+#X connect 22 0 27 0;
+#X connect 23 0 22 0;
+#X connect 24 0 26 0;
+#X connect 25 0 24 0;
+#X connect 29 0 28 0;
+#X connect 31 0 30 0;
