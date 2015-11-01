@@ -4,10 +4,10 @@
 #define DEFSENDVS 64    /* LATER get send to get this from canvas */
 #define DEBUG 1
 
-/* ----------------------------- cacho~ ----------------------------- */
-static t_class *cacho_tilde_class;
+/* ----------------------------- mcatch~ ----------------------------- */
+static t_class *mcatch_tilde_class;
 
-typedef struct _cacho_tilde
+typedef struct _mcatch_tilde
 {
     t_object x_obj;
     t_symbol *x_sym;
@@ -19,18 +19,36 @@ typedef struct _cacho_tilde
     int cr_i_am;
     int instance;
 
-} t_cacho_tilde;
+} t_mcatch_tilde;
 
 
 char cr_names[40][20];
 int cr_i=0;
 void *cr_class[40];
 
-
-void *cacho_tilde_new(t_symbol *s)
+int find_class_ix(t_symbol *s)
 {
 
-    t_cacho_tilde *x = (t_cacho_tilde *)pd_new(cacho_tilde_class);
+    int i,j=-1;
+    for( i=0;i<cr_i;i++)
+    {
+        if( strcmp(  cr_names[i], s->s_name )==0 )
+        {
+            j = i;
+            break;
+        }
+    }
+
+    return j;
+}
+
+
+
+
+void *mcatch_tilde_new(t_symbol *s)
+{
+
+    t_mcatch_tilde *x = (t_mcatch_tilde *)pd_new(mcatch_tilde_class);
 
     x->x_sym = s;
     x->x_n = DEFSENDVS;
@@ -38,21 +56,19 @@ void *cacho_tilde_new(t_symbol *s)
 
     int nuevo = 1;
 
-    int i;
-    for( i=0;i<cr_i;i++)
-    {
-    	if( strcmp(  cr_names[i], s->s_name )==0 )
-    	{
-            x->cr_i_am = i;
-    		nuevo = 0;
-    		break;
-    	}
-    }
+    int j;
+    j = find_class_ix(s);
 
+    if(j!=-1)
+    {
+        nuevo = 0;
+        x->cr_i_am = j; 
+    }
+        
     
     if(nuevo == 1)
     {
-    	// cr_class[cr_i] = (t_cacho_tilde *)getbytes( sizeof(t_cacho_tilde) );
+    	// cr_class[cr_i] = (t_mcatch_tilde *)getbytes( sizeof(t_mcatch_tilde) );
         // memcpy( cr_class[cr_i], x, 1);
         cr_class[cr_i] = &x->x_obj.ob_pd;
 
@@ -60,7 +76,9 @@ void *cacho_tilde_new(t_symbol *s)
     	strcpy( cr_names[cr_i] , s->s_name );
         x->cr_i_am = cr_i;
         
-        pd_bind(&x->x_obj.ob_pd, s);
+        // pd_bind(&x->x_obj.ob_pd, s);
+
+
         x->x_vec = (t_sample *)getbytes(DEFSENDVS * sizeof(t_sample));
         memset((char *)(x->x_vec), 0, DEFSENDVS * sizeof(t_sample));    
 
@@ -83,7 +101,9 @@ void *cacho_tilde_new(t_symbol *s)
     else
     {   
     	
-        t_cacho_tilde *catcher = (t_cacho_tilde *)pd_findbyclass((x->x_sym = s), cacho_tilde_class);
+        t_mcatch_tilde *catcher = (t_mcatch_tilde *) cr_class[x->cr_i_am];
+
+        // t_mcatch_tilde *catcher = (t_mcatch_tilde *)pd_findbyclass((x->x_sym = s), mcatch_tilde_class);
         x->x_vec = catcher->x_vec;
 
         x->x_total_instances = catcher->x_total_instances;
@@ -104,10 +124,10 @@ void *cacho_tilde_new(t_symbol *s)
     return (x);
 }
 
-t_int *cacho_tilde_perform(t_int *w)
+t_int *mcatch_tilde_perform(t_int *w)
 {
 
-    t_cacho_tilde *x = (t_cacho_tilde *)(w[1]);
+    t_mcatch_tilde *x = (t_mcatch_tilde *)(w[1]);
     
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -129,10 +149,10 @@ t_int *cacho_tilde_perform(t_int *w)
 }
 
 /* tb: vectorized catch function */
-t_int *cacho_tilde_perf8(t_int *w)
+t_int *mcatch_tilde_perf8(t_int *w)
 {
     
-    t_cacho_tilde *x = (t_cacho_tilde *)(w[1]);
+    t_mcatch_tilde *x = (t_mcatch_tilde *)(w[1]);
 
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -161,19 +181,19 @@ t_int *cacho_tilde_perf8(t_int *w)
     return (w+5);
 }
 
-void cacho_tilde_dsp(t_cacho_tilde *x, t_signal **sp)
+void mcatch_tilde_dsp(t_mcatch_tilde *x, t_signal **sp)
 {
     if (x->x_n == sp[0]->s_n)
     {
         if(sp[0]->s_n&7)
-        dsp_add(cacho_tilde_perform, 4, x,  x->x_vec, sp[0]->s_vec, sp[0]->s_n);
+        dsp_add(mcatch_tilde_perform, 4, x,  x->x_vec, sp[0]->s_vec, sp[0]->s_n);
         else
-        dsp_add(cacho_tilde_perf8, 4, x, x->x_vec, sp[0]->s_vec, sp[0]->s_n);
+        dsp_add(mcatch_tilde_perf8, 4, x, x->x_vec, sp[0]->s_vec, sp[0]->s_n);
     }
-    else error("cacho_tilde %s: unexpected vector size", x->x_sym->s_name);
+    else error("mcatch_tilde %s: unexpected vector size", x->x_sym->s_name);
 }
 
-void cacho_tilde_free(t_cacho_tilde *x)
+void mcatch_tilde_free(t_mcatch_tilde *x)
 {
     *(x->x_total_instances) = *(x->x_total_instances) - 1;
     
@@ -185,12 +205,12 @@ void cacho_tilde_free(t_cacho_tilde *x)
         // pd_unbind(&x->x_obj.ob_pd, x->x_sym);
         
         
-        pd_unbind( cr_class[x->cr_i_am], x->x_sym);
+        // pd_unbind( cr_class[x->cr_i_am], x->x_sym);
 
         strcpy( cr_names[x->cr_i_am] , "" );
+        cr_class[x->cr_i_am] = NULL;
 
         freebytes(x->x_vec, x->x_n * sizeof(t_sample));
-
         freebytes(x->x_total_instances, sizeof(int) );
         freebytes(x->x_executed, sizeof(int) );
 
@@ -227,41 +247,50 @@ void cacho_tilde_free(t_cacho_tilde *x)
     
 }
 
-void cacho_tilde_setup(void)
+void mcatch_tilde_setup(void)
 {
-    cacho_tilde_class = class_new(gensym("cacho~"), (t_newmethod)cacho_tilde_new,
-        (t_method)cacho_tilde_free, sizeof(t_cacho_tilde), CLASS_NOINLET, A_DEFSYM, 0);
-    class_addmethod(cacho_tilde_class, (t_method)cacho_tilde_dsp, gensym("dsp"), 0);
-    class_sethelpsymbol(cacho_tilde_class, gensym("rita~"));
+    mcatch_tilde_class = class_new(gensym("mcatch~"), (t_newmethod)mcatch_tilde_new,
+        (t_method)mcatch_tilde_free, sizeof(t_mcatch_tilde), CLASS_NOINLET, A_DEFSYM, 0);
+    class_addmethod(mcatch_tilde_class, (t_method)mcatch_tilde_dsp, gensym("dsp"), 0);
+    class_sethelpsymbol(mcatch_tilde_class, gensym("mthrow~"));
 }
 
 
 
-/* ----------------------------- rita~ ----------------------------- */
-static t_class *rita_tilde_class;
+/* ----------------------------- mthrow~ ----------------------------- */
+static t_class *mthrow_tilde_class;
 
-typedef struct _rita_tilde
+typedef struct _mthrow_tilde
 {
     t_object x_obj;
     t_symbol *x_sym;
     t_sample *x_whereto;
     int x_n;
     t_float x_f;
-} t_rita_tilde;
+    int cr_i_am;
 
- void *rita_tilde_new(t_symbol *s)
+} t_mthrow_tilde;
+
+ void *mthrow_tilde_new(t_symbol *s)
 {
-    t_rita_tilde *x = (t_rita_tilde *)pd_new(rita_tilde_class);
+    t_mthrow_tilde *x = (t_mthrow_tilde *)pd_new(mthrow_tilde_class);
+
+    int j;
+    j = find_class_ix(s);
+
+    if(j!=-1)
+        x->cr_i_am=j;
+
     x->x_sym = s;
-    x->x_whereto  = 0;
+    x->x_whereto = 0;
     x->x_n = DEFSENDVS;
     x->x_f = 0;
     return (x);
 }
 
- t_int *rita_tilde_perform(t_int *w)
+ t_int *mthrow_tilde_perform(t_int *w)
 {
-    t_rita_tilde *x = (t_rita_tilde *)(w[1]);
+    t_mthrow_tilde *x = (t_mthrow_tilde *)(w[1]);
     t_sample *in = (t_sample *)(w[2]);
     int n = (int)(w[3]);
     t_sample *out = x->x_whereto;
@@ -277,61 +306,68 @@ typedef struct _rita_tilde
     return (w+4);
 }
 
- void rita_tilde_set(t_rita_tilde *x, t_symbol *s)
+ void mthrow_tilde_set(t_mthrow_tilde *x, t_symbol *s)
 {
 
+    //Hacer que esto ande, que busque automaticamente la clase que pertenece. Hacer que cr_class sea un mapa
+    int j;
+    j = find_class_ix(x->x_sym);
 
-    t_cacho_tilde *catcher = (t_cacho_tilde *)pd_findbyclass((x->x_sym = s), cacho_tilde_class);
+    t_mcatch_tilde *catcher = NULL;
 
+    if(x->cr_i_am != -1)
+        catcher = (t_mcatch_tilde *) cr_class[x->cr_i_am];
+    
 
-    if (catcher)
+    // t_mcatch_tilde *catcher = (t_mcatch_tilde *)pd_findbyclass((x->x_sym = s), mcatch_tilde_class);
+
+    if (catcher != NULL)
     {
         if (catcher->x_n == x->x_n)
         {
             x->x_whereto = catcher->x_vec;
         }
-
-
         else
         {
-            pd_error(x, "rita~ %s: vector size mismatch", x->x_sym->s_name);
+            post("%d\t%d",catcher->x_n, x->x_n);
+            pd_error(x, "mthrow~ %s: vector size mismatch with mcatch~", x->x_sym->s_name);
             x->x_whereto = 0;
         }
     }
     else
     {
-        pd_error(x, "rita~ %s: no matching catch", x->x_sym->s_name);
+        pd_error(x, "mthrow~ %s: no matching mcatch", x->x_sym->s_name);
         x->x_whereto = 0;
     }
 }
 
- void rita_tilde_dsp(t_rita_tilde *x, t_signal **sp)
+ void mthrow_tilde_dsp(t_mthrow_tilde *x, t_signal **sp)
 {
     if (sp[0]->s_n != x->x_n)
     {
-        pd_error(x, "rita~ %s: vector size mismatch", x->x_sym->s_name);
+        pd_error(x, "mthrow~ %s: vector size mismatch", x->x_sym->s_name);
     }
     else
     {
-        rita_tilde_set(x, x->x_sym);
-        dsp_add(rita_tilde_perform, 3,
+        mthrow_tilde_set(x, x->x_sym);
+        dsp_add(mthrow_tilde_perform, 3,
             x, sp[0]->s_vec, sp[0]->s_n);
     }
 }
 
- void rita_tilde_setup(void)
+ void mthrow_tilde_setup(void)
 {
-    rita_tilde_class = class_new(gensym("rita~"), (t_newmethod)rita_tilde_new, 0,
-        sizeof(t_rita_tilde), 0, A_DEFSYM, 0);
-    class_addmethod(rita_tilde_class, (t_method)rita_tilde_set, gensym("set"),
+    mthrow_tilde_class = class_new(gensym("mthrow~"), (t_newmethod)mthrow_tilde_new, 0,
+        sizeof(t_mthrow_tilde), 0, A_DEFSYM, 0);
+    class_addmethod(mthrow_tilde_class, (t_method)mthrow_tilde_set, gensym("set"),
         A_SYMBOL, 0);
-    CLASS_MAINSIGNALIN(rita_tilde_class, t_rita_tilde, x_f);
-    class_addmethod(rita_tilde_class, (t_method)rita_tilde_dsp, gensym("dsp"), 0);
+    CLASS_MAINSIGNALIN(mthrow_tilde_class, t_mthrow_tilde, x_f);
+    class_addmethod(mthrow_tilde_class, (t_method)mthrow_tilde_dsp, gensym("dsp"), 0);
 }
 
 
-void cachorita_setup(void)
+void multicatch_setup(void)
 {
-    cacho_tilde_setup();
-    rita_tilde_setup();
+    mcatch_tilde_setup();
+    mthrow_tilde_setup();
 }
