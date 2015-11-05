@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE PDContainer SYSTEM "http://grh.mur.at/software/pdcontainer_multi.dtd">
+<PDContainer type="h_map">
+    <element>
+        <key>
+            <s>/tabla/data</s>
+        </key>
+        <value>
+            <f>0</f>
+            <f>0</f>
+            <f>0</f>
+            <f>0</f>
+            <f>0</f>
+            <f>0</f>
+            <f>0</f>
+            <f>0</f>
+            <f>0</f>
+            <f>0</f>
+        </value>
+    </element>
+</PDContainer>

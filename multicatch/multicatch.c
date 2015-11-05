@@ -91,8 +91,8 @@ void *mcatch_tilde_new(t_symbol *s)
 
         x->instance = 0;
 
-		post("Cacho: %d %s. Cacho nuevo. Instancia n=%d",x->cr_i_am,s->s_name,*(x->x_total_instances));
-        if (DEBUG) printf("Cacho: %d %s. Cacho nuevo. Instancia n=%d\n",x->cr_i_am,s->s_name,*(x->x_total_instances));
+		post("mcatch: %d %s. mcatch nuevo. Instancia n=%d",x->cr_i_am,s->s_name,*(x->x_total_instances));
+        if (DEBUG) printf("mcatch: %d %s. mcatch nuevo. Instancia n=%d\n",x->cr_i_am,s->s_name,*(x->x_total_instances));
 
         cr_i++;
 		x->x_first = 1;
@@ -114,8 +114,8 @@ void *mcatch_tilde_new(t_symbol *s)
 
         x->x_executed = catcher->x_executed;
 
-		post("Cacho: %d %s. Cacho existente. Instancia n=%d",x->cr_i_am,s->s_name,*(x->x_total_instances));
-		if(DEBUG) printf("Cacho: %d %s. Cacho existente. Instancia n=%d\n",x->cr_i_am,s->s_name,*(x->x_total_instances));
+		post("mcatch: %d %s. mcatch existente. Instancia n=%d",x->cr_i_am,s->s_name,*(x->x_total_instances));
+		if(DEBUG) printf("mcatch: %d %s. mcatch existente. Instancia n=%d\n",x->cr_i_am,s->s_name,*(x->x_total_instances));
 
     }
 
@@ -214,14 +214,14 @@ void mcatch_tilde_free(t_mcatch_tilde *x)
         freebytes(x->x_total_instances, sizeof(int) );
         freebytes(x->x_executed, sizeof(int) );
 
-        post("Cacho: %d %s. Se borró la %d. No hay más instancias. ",x->cr_i_am,x->x_sym->s_name,x->instance );
-        if(DEBUG) printf("Cacho: %d %s. Se borró la %d. No hay más instancias \n",x->cr_i_am,x->x_sym->s_name,x->instance );
+        post("mcatch: %d %s. Se borró la %d. No hay más instancias. ",x->cr_i_am,x->x_sym->s_name,x->instance );
+        if(DEBUG) printf("mcatch: %d %s. Se borró la %d. No hay más instancias \n",x->cr_i_am,x->x_sym->s_name,x->instance );
 
     }
     else
     {
-        post("Cacho: %d %s. Se borró la %d. Cantidad de instancias n=%d",x->cr_i_am,x->x_sym->s_name,x->instance ,*(x->x_total_instances));
-        if(DEBUG) printf("Cacho: %d %s. Se borró la %d. Cantidad de instancias n=%d\n",x->cr_i_am,x->x_sym->s_name,x->instance ,*(x->x_total_instances));
+        post("mcatch: %d %s. Se borró la %d. Cantidad de instancias n=%d",x->cr_i_am,x->x_sym->s_name,x->instance ,*(x->x_total_instances));
+        if(DEBUG) printf("mcatch: %d %s. Se borró la %d. Cantidad de instancias n=%d\n",x->cr_i_am,x->x_sym->s_name,x->instance ,*(x->x_total_instances));
         if(DEBUG) printf("%g\n", x->x_vec[0]);
     }
 
@@ -235,13 +235,13 @@ void mcatch_tilde_free(t_mcatch_tilde *x)
     //     freebytes(x->x_total_instances, sizeof(int) );
     //     freebytes(x->x_executed, sizeof(int) );
 
-    //     post("Cacho: %d %s. No hay más instancias n=%d",cr_i,x->x_sym->s_name,*(x->x_total_instances));
-    //     if(DEBUG) printf("Cacho: %d %s. No hay más instancias n=%d\n",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+    //     post("mcatch: %d %s. No hay más instancias n=%d",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+    //     if(DEBUG) printf("mcatch: %d %s. No hay más instancias n=%d\n",cr_i,x->x_sym->s_name,*(x->x_total_instances));
     // }
     // else
     // {
-    // 	post("Cacho: %d %s. Cantidad de instancias n=%d",cr_i,x->x_sym->s_name,*(x->x_total_instances));
-    //     if(DEBUG) printf("Cacho: %d %s. Cantidad de instancias n=%d\n",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+    // 	post("mcatch: %d %s. Cantidad de instancias n=%d",cr_i,x->x_sym->s_name,*(x->x_total_instances));
+    //     if(DEBUG) printf("mcatch: %d %s. Cantidad de instancias n=%d\n",cr_i,x->x_sym->s_name,*(x->x_total_instances));
     // }
 
     

@@ -14,8 +14,8 @@
 -66577 0;
 #X obj 498 3 cnv 15 160 120 empty empty Ventana_Emergente 20 12 0 14
 -233017 -66577 0;
-#X obj 504 181 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 2 256;
+#X obj 504 181 nbx 5 14 -1e+037 1e+037 0 0 empty empty empty 0 -8 0
+10 -262144 -1 -1 2 256;
 #X obj 504 230 iem_receive;
 #X obj 504 260 symbol;
 #X obj 675 101 s canvas_set_\$0;
@@ -47,7 +47,7 @@
 #X msg 516 54 vis \$1;
 #X obj 516 75 s pd-editor\$1;
 #X obj 516 32 r \$0_editor;
-#N canvas 799 440 937 319 editor\$1 0;
+#N canvas 313 55 672 319 editor\$1 1;
 #X obj 9 223 s /\$1/eq_params;
 #X obj 9 -38 metrum 50 1;
 #X obj 9 15 gui.eq7.mmb \$1;
