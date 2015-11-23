@@ -1,4 +1,4 @@
-#N canvas 432 316 697 445 10;
+#N canvas 430 321 697 445 10;
 #X declare -lib pdcontainer -lib tof;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
@@ -17,16 +17,15 @@
 #X obj 0 -80 cnv 15 552 40 empty \$0-pddp.cnv.header State_Manager
 3 12 0 18 -204280 -1 0;
 #X text 11 -57 save and load parameters states in xml files;
-#N canvas 692 466 541 559 simple 0;
+#N canvas 690 471 541 559 simple 0;
 #X obj 9 53 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10 -262144
--1 -1 13 256;
+-1 -1 0 256;
 #X obj 11 144 state_manager;
 #X obj 11 85 loadbang;
 #X text 232 51 1 change it;
 #X text 267 152 2 save it;
 #X text 340 152 4 load it;
 #X text 319 51 3 change it again;
-#X msg 11 113 dir xmls/simple \, name 0;
 #X text 13 15 You can save floats \, symbols and list;
 #X symbolatom 163 302 10 0 0 0 - - -;
 #X text 14 205 5 Press the list message and enter a text in the symbol
@@ -42,29 +41,29 @@ obj \, then save it and load it again;
 #X obj 13 305 prepend 0;
 #X obj 13 278 state_io_noset /list;
 #X msg 13 247 1 2 6 4 5 3;
-#X connect 0 0 12 0;
-#X connect 2 0 7 0;
-#X connect 7 0 1 0;
-#X connect 11 0 13 0;
-#X connect 12 0 0 0;
-#X connect 13 0 9 0;
+#X msg 11 113 dir xmls \, name 0;
+#X connect 0 0 11 0;
+#X connect 2 0 18 0;
+#X connect 10 0 12 0;
+#X connect 11 0 0 0;
+#X connect 12 0 8 0;
+#X connect 15 0 14 0;
 #X connect 16 0 15 0;
 #X connect 17 0 16 0;
-#X connect 18 0 17 0;
+#X connect 18 0 1 0;
 #X restore 15 34 pd simple example;
-#N canvas 551 469 713 480 auto 0;
+#N canvas 549 474 713 480 auto 0;
 #X obj 48 63 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 13 256;
+-262144 -1 -1 0 256;
 #X obj 22 95 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 1300 1;
+-1 -1 0 1;
 #X obj 257 112 r /value;
 #X obj 260 138 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 1300 1;
+-1 -1 0 1;
 #X obj 261 189 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
 #X obj 258 210 s /value;
 #X obj 20 263 loadbang;
-#X msg 20 291 dir xmls/simple \, name 0;
 #X text 11 -7 All the objects are comunicated. Chages are sent over
 the parameter label used;
 #X text 149 35 1 changing this affects the other state_io_set with
@@ -76,18 +75,19 @@ it.;
 #X obj 15 36 state_io_set /value;
 #X obj 59 151 state_io_set /value;
 #X obj 20 322 state_manager;
-#X connect 0 0 13 0;
-#X connect 1 0 14 0;
+#X msg 20 291 dir xmls \, name 0;
+#X connect 0 0 12 0;
+#X connect 1 0 13 0;
 #X connect 2 0 3 0;
 #X connect 4 0 5 0;
-#X connect 6 0 7 0;
-#X connect 7 0 15 0;
-#X connect 13 0 0 0;
-#X connect 14 0 1 0;
+#X connect 6 0 15 0;
+#X connect 12 0 0 0;
+#X connect 13 0 1 0;
+#X connect 15 0 14 0;
 #X restore 15 65 pd auto sender and receiver;
-#N canvas 115 507 609 351 no 0;
+#N canvas 113 512 609 351 no 0;
 #X obj 34 105 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 1300 1;
+-1 -1 0 1;
 #X obj 28 -74 s /value;
 #X obj 31 -101 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
@@ -107,7 +107,7 @@ the parameter label;
 #X connect 9 0 4 0;
 #X connect 10 0 3 0;
 #X restore 16 97 pd no set;
-#N canvas 434 587 548 351 changing 0;
+#N canvas 432 592 548 351 changing 0;
 #X obj 24 -15 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 0 256;
 #X obj 26 -80 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
@@ -131,8 +131,7 @@ the parameter label;
 #X connect 6 0 12 1;
 #X connect 12 0 1 0;
 #X restore 16 128 pd changing labels;
-#N canvas 834 408 574 303 state 0;
-#X msg 21 -147 dir xmls/simple;
+#N canvas 832 413 574 303 state 1;
 #X text 129 -149 set directory to store files;
 #X msg 34 -122 name 0;
 #X text 131 -114 state name;
@@ -141,21 +140,22 @@ the parameter label;
 #X msg 78 -47 save;
 #X msg 91 -15 print;
 #X msg 101 13 clear;
-#X text 109 -74;
+#X text 109 -74 comment;
 #X text 138 -19 prints all data in the state;
 #X text 149 13 clears all data in the state;
 #X obj 21 44 state_manager;
-#X connect 0 0 12 0;
-#X connect 2 0 12 0;
-#X connect 4 0 12 0;
-#X connect 5 0 12 0;
-#X connect 6 0 12 0;
-#X connect 7 0 12 0;
-#X connect 8 0 12 0;
+#X msg 21 -147 dir xmls;
+#X connect 1 0 11 0;
+#X connect 3 0 11 0;
+#X connect 4 0 11 0;
+#X connect 5 0 11 0;
+#X connect 6 0 11 0;
+#X connect 7 0 11 0;
+#X connect 12 0 11 0;
 #X restore 17 228 pd state manager options;
-#N canvas 922 496 437 268 accesing 0;
+#N canvas 920 501 437 268 accesing 1;
 #X obj 31 121 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 13 256;
+-262144 -1 -1 0 256;
 #X obj 31 94 state_io_get /value;
 #X obj 31 71 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -168,17 +168,16 @@ with a bang (similar to the value object);
 #X connect 3 0 1 1;
 #X connect 4 0 1 1;
 #X restore 16 196 pd accesing data;
-#N canvas 475 355 540 430 line 0;
+#N canvas 471 365 540 430 line 0;
 #X obj 24 -244 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 13 256;
+-262144 -1 -1 0 256;
 #X obj 23 -209 loadbang;
-#X msg 23 -181 dir xmls/simple \, name 0;
 #X text 275 -138 1 change the line time and press load;
 #X obj 24 -84 r /value;
 #X obj 24 -60 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 13 256;
+-262144 -1 -1 0 256;
 #X obj 22 -1 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 13 256;
+-262144 -1 -1 0 256;
 #X obj 22 -25 state_r_line /value;
 #X text 19 -300 States could be interlpolated between one an another
 with line objects. First set the time in the state_manage and then
@@ -191,13 +190,14 @@ press load.;
 #X text 150 -25 this object outputs the interpolated data;
 #X obj 90 -244 state_io_set_line /value;
 #X obj 23 -150 state_manager;
-#X connect 0 0 14 0;
-#X connect 1 0 2 0;
-#X connect 2 0 15 0;
-#X connect 4 0 5 0;
-#X connect 7 0 6 0;
-#X connect 11 0 10 0;
-#X connect 14 0 0 0;
+#X msg 23 -181 dir xmls \, name 0;
+#X connect 0 0 13 0;
+#X connect 1 0 15 0;
+#X connect 3 0 4 0;
+#X connect 6 0 5 0;
+#X connect 10 0 9 0;
+#X connect 13 0 0 0;
+#X connect 15 0 14 0;
 #X restore 16 163 pd line interpolation;
 #X text 15 -26 This colleaction of object allows to load and save states
 and comunicate objects. It relays on the pdcontainer objects.;

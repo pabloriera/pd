@@ -1,0 +1,10 @@
+#N canvas 580 440 450 300 10;
+#X obj 114 89 r \$1;
+#X obj 114 140 line;
+#X obj 114 115 pack f f;
+#X obj 159 88 r state_line_time;
+#X obj 114 165 outlet;
+#X connect 0 0 2 0;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 2 1;
