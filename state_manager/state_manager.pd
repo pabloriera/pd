@@ -1,4 +1,4 @@
-#N canvas 348 92 1315 806 10;
+#N canvas 346 97 1315 806 10;
 #X declare -lib pdcontainer -lib tof;
 #X msg 968 311 print;
 #X obj 342 682 s;
@@ -84,7 +84,6 @@
 #X obj 7 29 hradio 10 1 0 8 \$0-num empty empty 0 -8 0 10 -262144 -1
 -1 0;
 #X obj 674 308 r \$0-num;
-#X obj 898 307 s \$0-time;
 #X obj 20 64 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 699 184 route dir name load save time print clear;
@@ -97,6 +96,9 @@
 #X obj -106 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 342 619 h_map global_state;
+#X obj 154 -45 r state_line_time;
+#X msg 154 -23 set \$1;
+#X obj 846 340 s state_line_time;
 #X connect 0 0 5 0;
 #X connect 2 0 26 0;
 #X connect 3 0 19 0;
@@ -111,7 +113,7 @@
 #X connect 11 0 10 1;
 #X connect 18 0 22 0;
 #X connect 19 0 18 0;
-#X connect 20 0 85 0;
+#X connect 20 0 84 0;
 #X connect 21 0 1 1;
 #X connect 21 0 47 1;
 #X connect 22 0 20 0;
@@ -131,10 +133,10 @@
 #X connect 36 0 35 0;
 #X connect 36 1 33 1;
 #X connect 39 0 32 0;
-#X connect 41 0 82 0;
+#X connect 41 0 81 0;
 #X connect 42 0 35 1;
 #X connect 43 0 29 0;
-#X connect 45 0 77 0;
+#X connect 45 0 76 0;
 #X connect 47 0 46 0;
 #X connect 48 0 47 0;
 #X connect 49 0 48 1;
@@ -145,8 +147,8 @@
 #X connect 59 0 36 0;
 #X connect 60 0 59 0;
 #X connect 61 0 62 0;
-#X connect 61 0 76 0;
-#X connect 63 0 83 0;
+#X connect 61 0 75 0;
+#X connect 63 0 82 0;
 #X connect 64 0 63 0;
 #X connect 65 0 66 0;
 #X connect 66 0 35 0;
@@ -157,17 +159,19 @@
 #X connect 70 1 68 0;
 #X connect 72 0 71 0;
 #X connect 74 0 69 0;
-#X connect 77 0 79 0;
-#X connect 77 1 70 0;
-#X connect 77 2 54 0;
-#X connect 77 3 53 0;
-#X connect 77 4 75 0;
-#X connect 77 5 0 0;
-#X connect 77 6 78 0;
-#X connect 78 0 5 0;
-#X connect 80 0 65 0;
-#X connect 81 0 28 0;
-#X connect 84 0 64 0;
-#X connect 85 0 1 0;
-#X connect 85 0 48 0;
+#X connect 76 0 78 0;
+#X connect 76 1 70 0;
+#X connect 76 2 54 0;
+#X connect 76 3 53 0;
+#X connect 76 4 87 0;
+#X connect 76 5 0 0;
+#X connect 76 6 77 0;
+#X connect 77 0 5 0;
+#X connect 79 0 65 0;
+#X connect 80 0 28 0;
+#X connect 83 0 64 0;
+#X connect 84 0 1 0;
+#X connect 84 0 48 0;
+#X connect 85 0 86 0;
+#X connect 86 0 72 0;
 #X coords 0 -1 1 1 240 45 2 0 0;
