@@ -1,0 +1,8 @@
+#N canvas 653 213 450 300 10;
+#X msg 63 -128 getsize;
+#X obj 63 -154 inlet;
+#X obj 106 -75 outlet;
+#X obj 63 -103 h_map automatrix_in;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 3 1 2 0;

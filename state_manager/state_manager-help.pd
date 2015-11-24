@@ -1,4 +1,4 @@
-#N canvas 430 321 697 445 10;
+#N canvas 135 285 554 435 10;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
@@ -156,7 +156,7 @@ the parameter label;
 #X connect 7 0 13 0;
 #X connect 10 0 13 0;
 #X connect 11 0 13 0;
-#X restore 17 228 pd state manager options;
+#X restore 16 232 pd state manager options;
 #N canvas 920 501 437 268 accesing 0;
 #X obj 31 121 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 76 256;
@@ -206,7 +206,7 @@ press load.;
 #X text 15 -26 This colleaction of object allows to load and save states
 and comunicate objects. It relays on the pdcontainer's h_map object.
 ;
-#N canvas 1076 507 416 401 using 1;
+#N canvas 1076 507 416 401 using 0;
 #N canvas 1285 625 592 300 knob 0;
 #X obj 102 102 knob 60 60 0 127 0 0 empty empty empty 0 -8 0 8 -262144
 -1 -1 0 1;
@@ -294,4 +294,4 @@ and comunicate objects. It relays on the pdcontainer's h_map object.
 #X connect 10 0 6 0;
 #X connect 11 0 6 0;
 #X connect 12 0 6 0;
-#X restore 18 262 pd using example;
+#X restore 17 266 pd using example;
