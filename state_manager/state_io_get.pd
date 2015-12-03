@@ -1,6 +1,6 @@
-#N canvas 820 615 375 392 10;
+#N canvas 555 303 412 530 10;
 #X declare -lib pdcontainer;
-#X floatatom 94 321 5 0 0 0 - - -;
+#X floatatom 106 322 5 0 0 0 - - -;
 #X obj 179 357 outlet;
 #X obj 55 161 inlet;
 #X obj 13 18 import pdcontainer;
