@@ -1,4 +1,4 @@
-#N canvas 83 650 1104 369 10;
+#N canvas 83 650 1019 352 10;
 #X declare -lib multicatch;
 #X obj 92 43 s~ one;
 #X obj 19 81 r~ one;
@@ -43,7 +43,7 @@
 #X obj 798 59 sig~ 1;
 #X obj 602 90 mthrow~ three;
 #X obj 601 59 sig~ 1;
-#X text 600 253 This object is in beta \, erasing the first mcatch~
+#X text 600 253 These objects are in beta \, erasing the first mcatch~
 created may crash pd.;
 #X connect 1 0 4 0;
 #X connect 3 0 0 0;
