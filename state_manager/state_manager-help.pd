@@ -1,4 +1,4 @@
-#N canvas 363 335 554 435 10;
+#N canvas 245 389 554 465 10;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
@@ -16,12 +16,13 @@
 #X declare -lib pdcontainer -lib tof;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer -lib tof;
+#X declare -lib pdcontainer;
 #X obj 0 -80 cnv 15 552 40 empty \$0-pddp.cnv.header State_Manager
 3 12 0 18 -204280 -1 0;
 #X text 11 -57 save and load parameters states in xml files;
-#N canvas 753 384 541 559 simple 1;
+#N canvas 966 386 541 559 simple 1;
 #X obj 9 53 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10 -262144
--1 -1 38 256;
+-1 -1 29 256;
 #X obj 11 85 loadbang;
 #X text 232 51 1 change it;
 #X text 267 152 2 save it;
@@ -56,12 +57,12 @@ obj \, then save it and load it again;
 #X restore 15 34 pd simple example;
 #N canvas 549 474 713 480 auto 0;
 #X obj 48 63 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 38 256;
+-262144 -1 -1 29 256;
 #X obj 22 95 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 3800 1;
+-1 -1 2900 1;
 #X obj 257 112 r /value;
 #X obj 260 138 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 3800 1;
+-1 -1 2900 1;
 #X obj 261 189 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
 #X obj 258 210 s /value;
@@ -89,11 +90,11 @@ it.;
 #X restore 15 65 pd auto sender and receiver;
 #N canvas 113 512 609 351 no 0;
 #X obj 34 105 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 3800 1;
+-1 -1 2900 1;
 #X obj 28 -74 s /value;
 #X obj 31 -101 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
-#X msg 27 0 38;
+#X msg 27 0 29;
 #X msg 177 0 65;
 #X text 23 -184 The state_io_noset object does not use the set label
 in its first outlet.;
@@ -133,7 +134,7 @@ the parameter label;
 #X connect 6 0 12 1;
 #X connect 12 0 1 0;
 #X restore 16 128 pd changing labels;
-#N canvas 457 404 574 303 state 0;
+#N canvas 455 409 574 303 state 0;
 #X text 129 -149 set directory to store files;
 #X msg 34 -122 name 0;
 #X text 131 -114 state name;
@@ -159,7 +160,7 @@ the parameter label;
 #X restore 16 232 pd state manager options;
 #N canvas 920 501 437 268 accesing 0;
 #X obj 31 121 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 38 256;
+-262144 -1 -1 29 256;
 #X obj 31 94 state_io_get /value;
 #X obj 31 71 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -174,13 +175,13 @@ with a bang (similar to the value object);
 #X restore 16 196 pd accesing data;
 #N canvas 1024 359 540 430 line 0;
 #X obj 24 -244 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 38 256;
+-262144 -1 -1 29 256;
 #X obj 23 -209 loadbang;
 #X obj 24 -84 r /value;
 #X obj 24 -60 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 38 256;
+-262144 -1 -1 29 256;
 #X obj 22 -1 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 38 256;
+-262144 -1 -1 29 256;
 #X obj 22 -25 state_r_line /value;
 #X text 19 -300 States could be interlpolated between one an another
 with line objects. First set the time in the state_manage and then
@@ -295,3 +296,20 @@ and comunicate objects. It relays on the pdcontainer's h_map object.
 #X connect 11 0 6 0;
 #X connect 12 0 6 0;
 #X restore 17 266 pd using example;
+#N canvas 519 681 361 196 transmit 1;
+#X obj 36 133 state_transmit;
+#X msg 36 103 /value;
+#X obj 146 105 r /value;
+#X obj 146 133 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 29 256;
+#X msg 98 102 0;
+#X obj 36 71 t b b;
+#X obj 36 51 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;
+#X connect 4 0 3 0;
+#X connect 5 0 1 0;
+#X connect 5 1 4 0;
+#X connect 6 0 5 0;
+#X restore 19 305 pd transmit;
