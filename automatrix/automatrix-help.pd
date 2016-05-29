@@ -1,13 +1,5 @@
-#N canvas 745 473 1025 496 10;
+#N canvas 392 159 1025 492 10;
 #X declare -path ../state_manager;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
 #X declare -lib sfruit;
 #X declare -lib pdcontainer;
 #X declare -lib sfruit;
@@ -16,22 +8,25 @@
 #X declare -lib pdcontainer;
 #X declare -lib sfruit;
 #X declare -lib pdcontainer;
-#X obj -47 -18 automatrix20x20;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
 #X obj -47 20 automatrix_containers 20;
 #X obj -47 -63 path ../state_manager;
-#X msg -129 -22 print;
-#X msg -129 4 clear;
-#X obj 476 133 catch~ master_L;
-#X obj 596 133 catch~ master_R;
-#X obj 476 165 dac~ 1;
-#X obj 596 167 dac~ 2;
+#X msg -129 -23 print;
+#X msg -129 3 clear;
+#X obj 622 101 catch~ master_L;
+#X obj 742 101 catch~ master_R;
+#X obj 622 133 dac~ 1;
+#X obj 742 135 dac~ 2;
 #X obj -129 83 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj -129 161 s reset;
-#X obj 377 42 automatrix_faders;
-#X obj 326 294 automatrix_knobs;
-#X obj 326 272 r reset;
-#X obj 377 21 r reset;
 #X obj -129 107 loadbang;
 #X obj -61 191 s pd;
 #X msg -61 161 open automatrix-help-aux.pd ./;
@@ -40,21 +35,26 @@
 #X text 112 -23 fixed 20 x 20 audio matrix \, could be more \, just
 make a bigger patch;
 #X text 112 19 number of channels;
-#X text 475 83 this channels are for monitoring \, they send audio
+#X text 621 51 this channels are for monitoring \, they send audio
 to master_L and master_R;
-#X text 474 323 this knobs control de mtx_mul~ object;
+#X text 620 305 this knobs control de mtx_mul~ object;
 #X text -62 86 this is a workaround \, because if everything is loaded
 at the same time it makes some conflicts and the stack is not updated
 properly;
-#X connect 3 0 1 0;
-#X connect 4 0 1 0;
+#X obj 326 294 automatrix_knobs;
+#X obj 326 272 r reset;
+#X obj -47 -18 automatrix20x20;
+#X obj 377 43 automatrix_faders;
+#X obj 377 21 r reset;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 6 0;
 #X connect 5 0 7 0;
-#X connect 6 0 8 0;
-#X connect 9 0 15 0;
+#X connect 8 0 10 0;
+#X connect 10 0 13 0;
+#X connect 10 0 14 0;
+#X connect 12 0 11 0;
 #X connect 13 0 12 0;
-#X connect 14 0 11 0;
-#X connect 15 0 18 0;
-#X connect 15 0 19 0;
-#X connect 17 0 16 0;
-#X connect 18 0 17 0;
-#X connect 19 0 10 0;
+#X connect 14 0 9 0;
+#X connect 21 0 20 0;
+#X connect 24 0 23 0;

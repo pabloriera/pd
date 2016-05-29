@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE PDContainer SYSTEM "http://grh.mur.at/software/pdcontainer_multi.dtd">
+<PDContainer type="h_map">
+    <element>
+        <key>
+            <s>/gain/value</s>
+        </key>
+        <value>
+            <f>116.237</f>
+        </value>
+    </element>
+    <element>
+        <key>
+            <s>/lfo/freq/value</s>
+        </key>
+        <value>
+            <f>55.9661</f>
+        </value>
+    </element>
+    <element>
+        <key>
+            <s>/lowpass/freq/value</s>
+        </key>
+        <value>
+            <f>81.7966</f>
+        </value>
+    </element>
+    <element>
+        <key>
+            <s>/osc/freq/value</s>
+        </key>
+        <value>
+            <f>47.3559</f>
+        </value>
+    </element>
+</PDContainer>
