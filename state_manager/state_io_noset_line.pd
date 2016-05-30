@@ -8,7 +8,7 @@
 #X obj 3 8 import pdcontainer;
 #X obj 45 207 t b a;
 #X obj -7 154 r \$0_set_value;
-#X obj 163 277 h_map global_state;
+#X obj 163 277 h_map global_space;
 #X obj 45 234 symbol \$1;
 #X msg 365 136 set \$1;
 #X obj 365 110 symbol \$1;
