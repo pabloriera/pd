@@ -1,6 +1,6 @@
-#N canvas 744 257 471 374 10;
+#N canvas 742 262 471 374 10;
 #X obj -8 308 outlet;
-#X obj -8 125 unpack s f;
+#X obj 4 130 unpack s f;
 #X obj -8 251 route s;
 #X obj 154 102 bng 13 250 50 0 empty empty empty 0 -6 0 8 -233017 -1
 -1;
@@ -15,7 +15,7 @@
 #X obj 218 284 s \$0_cnv_text;
 #X msg 151 249 label \$1;
 #X msg 223 203 label;
-#X obj -8 96 r unpacked_osc;
+#X obj -8 82 r unpacked_osc;
 #X obj 71 307 outlet;
 #X obj 325 99 inlet;
 #X msg 72 284 set \$1;
