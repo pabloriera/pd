@@ -1,4 +1,4 @@
-#N canvas 753 135 554 514 10;
+#N canvas 751 140 554 514 10;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
@@ -39,7 +39,7 @@
 #X text 11 -57 save and load parameters states in xml files;
 #N canvas 483 82 537 661 simple 0;
 #X obj 9 53 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10 -262144
--1 -1 22 256;
+-1 -1 0 256;
 #X obj 11 85 loadbang;
 #X text 232 51 1 change it;
 #X text 267 152 2 save it;
@@ -74,7 +74,7 @@ obj \, then save it and load it again;
 #X restore 15 34 pd simple example;
 #N canvas 659 286 609 351 no 0;
 #X obj 34 105 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 2200 1;
+-1 -1 0 1;
 #X obj 28 -74 s /value;
 #X obj 31 -101 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
@@ -144,13 +144,13 @@ the parameter label;
 #X restore 16 294 pd state manager options;
 #N canvas 744 262 540 430 line 0;
 #X obj 24 -244 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 22 256;
+-262144 -1 -1 0 256;
 #X obj 23 -209 loadbang;
 #X obj 24 -74 r /value;
 #X obj 24 -50 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 22 256;
+-262144 -1 -1 0 256;
 #X obj 23 -1 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 22 256;
+-262144 -1 -1 0 256;
 #X text 19 -300 States could be interlpolated between one an another
 with line objects. First set the time in the state_manage and then
 press load.;
@@ -180,30 +180,30 @@ and comunicate objects. It relays on the pdcontainer's h_map object.
 #X msg 36 103 /value;
 #X obj 146 105 r /value;
 #X obj 146 133 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 22 256;
+-262144 -1 -1 0 256;
 #X msg 98 102 0;
 #X obj 36 71 t b b;
 #X obj 36 51 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 494 99 /value;
 #X obj 634 129 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 43 256;
+-262144 -1 -1 0 256;
 #X msg 556 98 0;
 #X obj 494 67 t b b;
 #X obj 494 47 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 580 20 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 43 256;
+-262144 -1 -1 0 256;
 #X obj 634 101 r TWO/value;
 #X msg 237 100 /value;
 #X obj 377 130 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 43 256;
+-262144 -1 -1 0 256;
 #X msg 299 99 0;
 #X obj 237 68 t b b;
 #X obj 237 48 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 323 21 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 43 256;
+-262144 -1 -1 0 256;
 #X obj 377 102 r ONE/value;
 #X obj 237 130 state_transmit ONE;
 #X obj 36 133 state_transmit;
@@ -233,29 +233,29 @@ and comunicate objects. It relays on the pdcontainer's h_map object.
 #X connect 23 0 11 0;
 #X connect 24 0 18 0;
 #X restore 16 230 pd transmit;
-#N canvas 339 274 936 343 namespace 1;
+#N canvas 337 279 936 343 namespace 0;
 #X obj 107 -41 .state_manager OSC1;
 #X msg 37 64 dir xmls;
 #X obj 339 235 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 43 256;
+-262144 -1 -1 0 256;
 #X obj 152 236 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 43 256;
+-262144 -1 -1 0 256;
 #X obj 37 39 loadbang;
 #X obj 339 256 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 152 259 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 3 233 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 22 256;
+-262144 -1 -1 0 256;
 #X obj 3 255 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 486 43 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 20 256;
+-262144 -1 -1 0 256;
 #X obj 487 86 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 22 256;
+-262144 -1 -1 0 256;
 #X obj 487 107 s /value;
 #X obj 485 1 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 12 256;
+-262144 -1 -1 0 256;
 #X text 242 -42 The state manager could be initialized with a Namespace
 ;
 #X text 153 176 Second argument in state_io objects will assign the
@@ -290,9 +290,9 @@ namespace to send;
 #X restore 16 261 pd namespace;
 #N canvas 342 438 850 518 auto 0;
 #X obj 48 63 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 22 256;
+-262144 -1 -1 0 256;
 #X obj 22 95 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 2200 1;
+-1 -1 0 1;
 #X obj 260 138 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
 #X obj 261 179 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
@@ -311,7 +311,7 @@ it.;
 #X text 400 135 2 You can also receive with the namespace and the label
 ;
 #X obj 262 279 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 2200 1;
+-1 -1 0 1;
 #X obj 262 310 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
 #X obj 259 253 r /value;
@@ -333,7 +333,7 @@ it.;
 #N canvas 408 437 416 401 single 0;
 #N canvas 1056 566 592 300 knob 0;
 #X obj 102 102 knob 60 60 0 127 0 0 empty empty empty 0 -8 0 8 -262144
--1 -1 836 1;
+-1 -1 0 1;
 #X obj 342 28 inlet;
 #X obj 342 75 makesymbol %s/value;
 #X obj 342 54 symbol;
@@ -438,7 +438,7 @@ it.;
 #X msg -12 0 namespace ONE;
 #N canvas 611 444 644 280 knob 0;
 #X obj 102 102 knob 60 60 0 127 0 0 empty empty empty 0 -8 0 8 -262144
--1 -1 836 1;
+-1 -1 0 1;
 #X obj 382 -2 inlet;
 #X obj 382 75 makesymbol %s/value;
 #X obj 382 52 symbol;
@@ -494,16 +494,16 @@ time 0;
 #X obj 27 84 udpsend;
 #X msg -124 51 connect 127.0.0.1 8000;
 #X obj 27 -6 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 18 256;
+-262144 -1 -1 0 256;
 #X obj 27 50 packOSC;
 #X msg 27 17 /gain/value \$1;
 #X obj 27 251 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 18 256;
+-262144 -1 -1 0 256;
 #X obj 26 180 state_osc_receiver;
 #X obj 211 250 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 30 256;
+-262144 -1 -1 0 256;
 #X obj 161 -7 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 30 256;
+-262144 -1 -1 0 256;
 #X msg 161 16 /ONE/gain/value \$1;
 #X obj 211 220 state_io_set /gain/value ONE;
 #X obj 27 221 state_io_set /gain/value;
@@ -520,7 +520,7 @@ time 0;
 #X restore 17 395 pd osc;
 #N canvas 434 456 537 263 getting 0;
 #X obj 28 163 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 22 256;
+-262144 -1 -1 0 256;
 #X obj 28 113 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 27 17 With the state_io_get object you can request the value
