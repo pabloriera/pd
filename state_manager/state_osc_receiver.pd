@@ -1,0 +1,12 @@
+#N canvas 945 285 326 251 10;
+#X obj 96 30 r unpacked_osc;
+#X obj 96 60 unpack s f;
+#X obj 96 125 f;
+#X obj 96 84 t b a;
+#X obj 96 158 s;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 1 1 2 1;
+#X connect 2 0 4 0;
+#X connect 3 0 2 0;
+#X connect 3 1 4 1;
