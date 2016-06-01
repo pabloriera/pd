@@ -1,4 +1,4 @@
-#N canvas 75 434 866 378 10;
+#N canvas 292 318 866 378 10;
 #X declare -lib pdcontainer;
 #X obj 365 268 outlet;
 #X obj 181 124 inlet;
@@ -27,10 +27,10 @@
 #X obj 459 57 symbol;
 #X obj 459 90 pack s s;
 #X obj 416 89 t b a;
-#X msg 459 121 set \$1\$2;
 #X obj 365 194 t a;
+#X msg 459 121 set /\$1\$2;
 #X connect 1 0 5 0;
-#X connect 2 0 28 0;
+#X connect 2 0 27 0;
 #X connect 3 0 7 0;
 #X connect 5 0 8 0;
 #X connect 5 1 7 1;
@@ -52,12 +52,12 @@
 #X connect 19 1 24 0;
 #X connect 20 0 24 0;
 #X connect 22 0 18 0;
-#X connect 23 0 28 0;
+#X connect 23 0 27 0;
 #X connect 24 0 21 0;
 #X connect 24 0 25 0;
-#X connect 25 0 27 0;
+#X connect 25 0 28 0;
 #X connect 26 0 25 0;
 #X connect 26 1 25 1;
-#X connect 27 0 23 0;
-#X connect 28 0 14 0;
-#X connect 28 0 0 0;
+#X connect 27 0 14 0;
+#X connect 27 0 0 0;
+#X connect 28 0 23 0;

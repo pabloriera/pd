@@ -3,26 +3,10 @@
 <PDContainer type="h_map">
     <element>
         <key>
-            <s>/bar</s>
-        </key>
-        <value>
-            <f>74</f>
-        </value>
-    </element>
-    <element>
-        <key>
-            <s>/foo</s>
-        </key>
-        <value>
-            <f>69</f>
-        </value>
-    </element>
-    <element>
-        <key>
             <s>/gain/value</s>
         </key>
         <value>
-            <f>109.78</f>
+            <f>94.7119</f>
         </value>
     </element>
     <element>
@@ -30,20 +14,7 @@
             <s>/lfo/freq/value</s>
         </key>
         <value>
-            <f>105.475</f>
-        </value>
-    </element>
-    <element>
-        <key>
-            <s>/list</s>
-        </key>
-        <value>
-            <f>1</f>
-            <f>2</f>
-            <f>6</f>
-            <f>4</f>
-            <f>5</f>
-            <f>3</f>
+            <f>109.78</f>
         </value>
     </element>
     <element>
@@ -51,7 +22,7 @@
             <s>/lowpass/freq/value</s>
         </key>
         <value>
-            <f>90.4068</f>
+            <f>27.9831</f>
         </value>
     </element>
     <element>
@@ -59,23 +30,7 @@
             <s>/osc/freq/value</s>
         </key>
         <value>
-            <f>62.4237</f>
-        </value>
-    </element>
-    <element>
-        <key>
-            <s>/sym</s>
-        </key>
-        <value>
-            <s>asd</s>
-        </value>
-    </element>
-    <element>
-        <key>
-            <s>/value</s>
-        </key>
-        <value>
-            <f>23</f>
+            <f>60.2712</f>
         </value>
     </element>
 </PDContainer>
