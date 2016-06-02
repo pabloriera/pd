@@ -1,18 +1,4 @@
-#N canvas 751 140 554 514 10;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer -lib tof;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer -lib tof;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer -lib tof;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
-#X declare -lib pdcontainer;
+#N canvas 963 125 554 514 10;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer -lib tof;
@@ -22,6 +8,20 @@
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer -lib tof;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer -lib tof;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer -lib tof;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer -lib tof;
+#X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer -lib tof;
@@ -34,10 +34,11 @@
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
 #X declare -lib pdcontainer;
+#X declare -lib pdcontainer;
 #X obj 0 -80 cnv 15 552 40 empty \$0-pddp.cnv.header State_Manager
 3 12 0 18 -204280 -1 0;
 #X text 11 -57 save and load parameters states in xml files;
-#N canvas 483 82 537 661 simple 0;
+#N canvas 481 87 537 661 simple 0;
 #X obj 9 53 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10 -262144
 -1 -1 0 256;
 #X obj 11 85 loadbang;
@@ -60,17 +61,17 @@ obj \, then save it and load it again;
 #X restore 14 443 graph;
 #X obj 13 338 state_io_noset /list;
 #X obj 163 336 state_io_noset /sym;
-#X obj 76 51 state_io_set /value;
 #X obj 11 144 state_manager;
-#X connect 0 0 17 0;
+#X obj 76 51 state_io_set /value;
+#X connect 0 0 18 0;
 #X connect 1 0 13 0;
 #X connect 9 0 16 0;
 #X connect 11 0 10 0;
 #X connect 12 0 15 0;
-#X connect 13 0 18 0;
+#X connect 13 0 17 0;
 #X connect 15 0 11 0;
 #X connect 16 0 7 0;
-#X connect 17 0 0 0;
+#X connect 18 0 0 0;
 #X restore 15 34 pd simple example;
 #N canvas 659 286 609 351 no 0;
 #X obj 34 105 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
@@ -94,7 +95,7 @@ the parameter label;
 #X connect 9 0 0 0;
 #X connect 10 0 3 0;
 #X restore 16 97 pd no set;
-#N canvas 819 601 548 351 changing 0;
+#N canvas 817 606 548 351 changing 0;
 #X obj 24 -15 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 0 256;
 #X obj 26 -80 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
@@ -118,7 +119,7 @@ the parameter label;
 #X connect 6 0 12 1;
 #X connect 12 0 1 0;
 #X restore 16 128 pd changing labels;
-#N canvas 449 424 574 303 state 0;
+#N canvas 447 429 574 303 state 0;
 #X text 129 -149 set directory to store files;
 #X msg 34 -122 name 0;
 #X text 131 -114 state name;
@@ -142,7 +143,7 @@ the parameter label;
 #X connect 10 0 13 0;
 #X connect 11 0 13 0;
 #X restore 16 294 pd state manager options;
-#N canvas 744 262 540 430 line 0;
+#N canvas 742 267 540 430 line 0;
 #X obj 24 -244 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 0 256;
 #X obj 23 -209 loadbang;
@@ -176,7 +177,7 @@ press load.;
 #X text 15 -26 This colleaction of object allows to load and save states
 and comunicate objects. It relays on the pdcontainer's h_map object.
 ;
-#N canvas 437 507 762 177 transmit 0;
+#N canvas 435 512 762 177 transmit 0;
 #X msg 36 103 /value;
 #X obj 146 105 r /value;
 #X obj 146 133 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
@@ -233,7 +234,7 @@ and comunicate objects. It relays on the pdcontainer's h_map object.
 #X connect 23 0 11 0;
 #X connect 24 0 18 0;
 #X restore 16 230 pd transmit;
-#N canvas 337 279 936 343 namespace 0;
+#N canvas 335 284 936 343 namespace 0;
 #X obj 107 -41 .state_manager OSC1;
 #X msg 37 64 dir xmls;
 #X obj 339 235 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
@@ -288,7 +289,7 @@ namespace to send;
 #X connect 25 0 18 0;
 #X connect 26 0 18 0;
 #X restore 16 261 pd namespace;
-#N canvas 342 438 850 518 auto 0;
+#N canvas 340 443 850 518 auto 0;
 #X obj 48 63 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
 -262144 -1 -1 0 256;
 #X obj 22 95 vsl 15 128 0 127 0 0 empty empty empty 0 -9 0 10 -262144
@@ -316,24 +317,24 @@ it.;
 -1 -1 0 1;
 #X obj 259 253 r /value;
 #X obj 259 331 s /value;
+#X obj 18 388 state_manager;
 #X obj 15 36 state_io_set /value;
 #X obj 59 151 state_io_set /value;
-#X obj 18 388 state_manager;
-#X connect 0 0 17 0;
-#X connect 1 0 18 0;
+#X connect 0 0 18 0;
+#X connect 1 0 19 0;
 #X connect 3 0 11 0;
 #X connect 4 0 9 0;
-#X connect 9 0 19 0;
+#X connect 9 0 17 0;
 #X connect 10 0 2 0;
 #X connect 14 0 16 0;
 #X connect 15 0 13 0;
-#X connect 17 0 0 0;
-#X connect 18 0 1 0;
+#X connect 18 0 0 0;
+#X connect 19 0 1 0;
 #X restore 15 65 pd auto sends and receives;
 #N canvas 408 437 416 401 single 0;
 #N canvas 1056 566 592 300 knob 0;
 #X obj 102 102 knob 60 60 0 127 0 0 empty empty empty 0 -8 0 8 -262144
--1 -1 0 1;
+-1 -1 1858 1;
 #X obj 342 28 inlet;
 #X obj 342 75 makesymbol %s/value;
 #X obj 342 54 symbol;
@@ -438,7 +439,7 @@ it.;
 #X msg -12 0 namespace ONE;
 #N canvas 611 444 644 280 knob 0;
 #X obj 102 102 knob 60 60 0 127 0 0 empty empty empty 0 -8 0 8 -262144
--1 -1 0 1;
+-1 -1 1858 1;
 #X obj 382 -2 inlet;
 #X obj 382 75 makesymbol %s/value;
 #X obj 382 52 symbol;
@@ -488,26 +489,31 @@ time 0;
 #X connect 13 0 15 0;
 #X connect 14 0 15 0;
 #X restore 16 361 pd double synth example;
-#N canvas 92 196 579 360 osc 0;
+#N canvas 411 186 765 335 osc 1;
 #X obj 26 -53 path ../osclearn;
 #X obj 24 134 osclearn_receiver;
 #X obj 27 84 udpsend;
 #X msg -124 51 connect 127.0.0.1 8000;
 #X obj 27 -6 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
+-262144 -1 -1 40 256;
 #X obj 27 50 packOSC;
 #X msg 27 17 /gain/value \$1;
 #X obj 27 251 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
+-262144 -1 -1 40 256;
 #X obj 26 180 state_osc_receiver;
 #X obj 211 250 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
+-262144 -1 -1 21 256;
 #X obj 161 -7 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
+-262144 -1 -1 21 256;
 #X msg 161 16 /ONE/gain/value \$1;
 #X obj 211 220 state_io_set /gain/value ONE;
-#X obj 27 221 state_io_set /gain/value;
 #X obj -124 26 loadbang;
+#X obj 322 -5 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 20 256;
+#X msg 402 247 12 3 20;
+#X msg 322 17 /list 12 3 \$1;
+#X obj 27 221 state_io_set /gain/value;
+#X obj 402 220 state_io_set /list;
 #X connect 3 0 2 0;
 #X connect 4 0 6 0;
 #X connect 5 0 2 0;
@@ -515,8 +521,11 @@ time 0;
 #X connect 10 0 11 0;
 #X connect 11 0 5 0;
 #X connect 12 0 9 0;
-#X connect 13 0 7 0;
-#X connect 14 0 3 0;
+#X connect 13 0 3 0;
+#X connect 14 0 16 0;
+#X connect 16 0 5 0;
+#X connect 17 0 7 0;
+#X connect 18 0 15 0;
 #X restore 17 395 pd osc;
 #N canvas 434 456 537 263 getting 0;
 #X obj 28 163 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
