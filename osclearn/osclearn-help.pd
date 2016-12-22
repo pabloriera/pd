@@ -1,21 +1,21 @@
-#N canvas 526 290 887 430 10;
+#N canvas 738 338 887 430 10;
 #X declare -lib mrpeach;
 #X obj 35 139 print A;
 #X obj 35 92 osclearn;
 #X obj 271 139 print B;
 #X obj 271 91 osclearn;
 #X obj 41 259 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
+-262144 -1 -1 33 256;
 #X text 42 205 Subpatch with a label for storing OSC label;
-#X obj 614 206 udpsend;
-#X msg 695 169 connect 127.0.0.1 8000;
-#X obj 614 116 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
--262144 -1 -1 0 256;
-#X obj 614 172 packOSC;
-#X obj 695 144 loadbang;
-#X msg 614 139 /value \$1;
+#X obj 611 252 udpsend;
+#X msg 692 215 connect 127.0.0.1 8000;
+#X obj 611 162 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 33 256;
+#X obj 611 218 packOSC;
+#X obj 692 190 loadbang;
+#X msg 611 185 /value \$1;
 #X obj 34 31 osclearn_receiver;
-#N canvas 48 395 520 232 (subpatch) 0;
+#N canvas 44 405 520 232 (subpatch) 0;
 #X obj 100 100 osclearn;
 #X obj 334 74 loadbang;
 #X obj 100 129 outlet;
@@ -23,13 +23,13 @@
 #X connect 0 0 2 0;
 #X connect 0 1 3 0;
 #X connect 1 0 3 0;
-#X connect 3 0 0 0;
+#X connect 3 0 0 1;
 #X coords 0 -1 1 1 220 17 2 100 100;
 #X restore 41 228 pd;
-#X obj 578 41 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 575 87 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 578 62 list-random 5 10;
-#X obj 578 86 prepend /randoms;
+#X obj 575 108 list-random 5 10;
+#X obj 575 132 prepend /randoms;
 #X connect 1 0 0 0;
 #X connect 3 0 2 0;
 #X connect 7 0 6 0;

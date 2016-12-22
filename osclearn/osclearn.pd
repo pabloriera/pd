@@ -1,4 +1,4 @@
-#N canvas 742 262 471 374 10;
+#N canvas 688 366 471 374 10;
 #X obj -8 308 outlet;
 #X obj 4 130 unpack s f;
 #X obj -8 251 route s;
@@ -10,16 +10,17 @@
 #X msg 154 173 1;
 #X msg 114 183 0;
 #X obj 4 166 t b a;
-#X obj 169 101 cnv 15 150 15 empty \$0_cnv_text empty 1 7 0 14 -233017
+#X obj 169 101 cnv 15 150 15 empty \$0_cnv_text /randoms 1 7 0 14 -233017
 -66577 0;
 #X obj 218 284 s \$0_cnv_text;
 #X msg 151 249 label \$1;
-#X msg 223 203 label;
+#X msg 218 251 label;
 #X obj -8 82 r unpacked_osc;
 #X obj 71 307 outlet;
 #X obj 325 99 inlet;
-#X msg 72 284 set \$1;
+#X msg 71 284 set \$1;
 #X obj 325 135 symbol;
+#X obj -8 54 inlet;
 #X connect 1 0 8 0;
 #X connect 2 0 0 0;
 #X connect 3 0 6 0;
@@ -40,4 +41,6 @@
 #X connect 16 0 14 0;
 #X connect 17 0 2 1;
 #X connect 17 0 11 0;
+#X connect 18 0 1 0;
+#X connect 18 0 2 0;
 #X coords 0 -1 1 1 220 15 1 100 100;
