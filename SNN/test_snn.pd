@@ -1,0 +1,252 @@
+#N canvas 957 194 899 476 10;
+#X obj 257 17 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 623 15 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 1 256;
+#X msg 623 97 set_currents \$1 \$2;
+#X obj 623 72 pack f f;
+#X obj 683 15 nbx 5 14 0 1e+37 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 177 256;
+#X msg 246 183 print_nn;
+#X obj 318 298 s fire_list;
+#X obj 257 41 metro 100;
+#X obj 296 16 nbx 5 14 1 1e+37 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 2 256;
+#X msg 3 259 neurons_potential 0 1;
+#X msg 18 181 add_all_synapses;
+#X obj 497 184 nbx 5 14 0 1 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 1 256;
+#X obj 554 156 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 80 256;
+#X obj 554 185 t b f;
+#X obj 497 213 pack f f f;
+#X obj 614 156 nbx 5 14 0 1e+37 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 20 256;
+#X obj 614 185 t b f;
+#X msg 497 241 set_syn_w_matrix \$1 \$2 \$3;
+#X msg 3 279 neurons_potential;
+#X obj 229 297 s fired;
+#X obj 408 298 s potential_list;
+#X obj 641 48 t b f;
+#N canvas 54 451 872 376 stuff 1;
+#X obj 26 152 r fired;
+#X obj 26 179 sel 0 1 2 3;
+#X obj 26 208 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 47 208 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 67 208 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 87 208 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 239 128 unpack f f, f 12;
+#N canvas 1 97 313 235 scroller 0;
+#X obj 62 72 list;
+#X obj 62 95 list prepend 0;
+#X obj 63 120 list trim;
+#X obj 64 155 s tab;
+#X obj 58 15 inlet;
+#X obj 85 41 list split 256;
+#X connect 0 0 1 0;
+#X connect 0 0 5 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 1;
+#X connect 5 2 0 1;
+#X restore 239 154 pd scroller;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array tab 256 float 1;
+#A 0 -36.7601 -38.0631 -39.5538 -40.9116 -42.1545 -43.2974 -44.3528
+-45.331 -46.2409 -47.0901 -47.8848 -48.6307 -49.3326 -49.9945 -50.6203
+-51.213 -51.7755 -52.3104 -52.8197 -53.3056 -53.7698 -54.2138 -54.6391
+-55.047 -55.4387 -55.8151 -56.1773 -56.5261 -56.8623 -57.1867 -57.4998
+-57.8024 -58.0948 -58.3778 -58.6516 -58.9168 -59.1738 -59.4229 -59.6645
+-59.8988 -60.1262 -60.3469 -60.5611 -60.7692 -60.9713 -61.1675 -61.3582
+-61.5433 -61.7232 -61.8979 -62.0676 -62.2323 -62.3922 -62.5475 -62.6981
+-62.8441 -62.9857 -63.1229 -63.2557 -63.3843 -63.5086 -63.6287 -63.7446
+-63.8564 -63.9641 -64.0676 -64.1671 -64.2625 -64.3537 -64.4409 -64.524
+-64.603 -64.6779 -64.7487 -64.8152 -64.8776 -64.9358 -64.9897 20.3923
+8.53649 -0.472679 -7.55401 -13.2705 -17.9858 -21.9455 -25.3207 -28.2349
+-30.7788 -33.0209 -35.0139 -36.7987 -38.4077 -39.8671 -41.1978 -42.4172
+-43.5396 -44.577 -45.5393 -46.435 -47.2715 -48.0549 -48.7906 -49.4832
+-50.1368 -50.7549 -51.3407 -51.8968 -52.4258 -52.9298 -53.4107 -53.8702
+-54.3099 -54.7313 -55.1354 -55.5236 -55.8968 -56.2559 -56.6018 -56.9353
+-57.2571 -57.5678 -57.8681 -58.1584 -58.4392 -58.7111 -58.9745 -59.2297
+-59.477 -59.7169 -59.9497 -60.1755 -60.3947 -60.6076 -60.8143 -61.015
+-61.21 -61.3994 -61.5834 -61.7621 -61.9356 -62.1041 -62.2678 -62.4267
+-62.5808 -62.7304 -62.8754 -63.016 -63.1522 -63.2841 -63.4116 -63.535
+-63.6541 -63.7691 -63.88 -63.9867 -64.0893 -64.1878 -64.2823 -64.3726
+-64.4589 -64.5411 -64.6191 -64.693 -64.7628 -64.8284 -64.8899 -64.9471
+-65 17.3449 6.25329 -2.24754 -8.97407 -14.4333 -18.9563 -22.7684 -26.0281
+-28.8499 -31.319 -33.4996 -35.4414 -37.1832 -38.7557 -40.1837 -41.4874
+-42.6833 -43.7852 -44.8044 -45.7507 -46.6322 -47.456 -48.2279 -48.9533
+-49.6366 -50.2817 -50.8921 -51.4708 -52.0205 -52.5435 -53.042 -53.5178
+-53.9727 -54.4081 -54.8253 -55.2257 -55.6103 -55.9802 -56.3362 -56.6792
+-57.0099 -57.3291 -57.6373 -57.9352 -58.2233 -58.502 -58.7719 -59.0333
+-59.2867 -59.5323 -59.7705 -60.0016 -60.2259 -60.4436 -60.655 -60.8603
+-61.0597 -61.2533 -61.4415 -61.6242 -61.8017 -61.974 -62.1414 -62.3039
+-62.4617 -62.6148 -62.7633 -62.9072 -63.0468 -63.182 -63.3128 -63.4394
+-63.5617 -63.6799 -63.7939 -63.9038 -64.0095 -64.1112 -64.2087 -64.3022
+-64.3916 -64.4769 -64.5581 -64.6351 -64.7081 -64.7769 -64.8415 -64.9019
+;
+#X coords 0 40 255 -100 400 140 1;
+#X restore 443 42 graph;
+#X obj 119 115 unpack f f;
+#X obj 119 170 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 176 170 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 119 144 sel 1;
+#X obj 176 144 sel 1;
+#X obj 218 228 sig~;
+#X obj 219 189 expr $f1/140;
+#X obj 218 256 hip~ 5;
+#X obj 217 322 dac~ 1 2;
+#X obj 218 286 *~;
+#X obj 255 285 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 342 236 sig~;
+#X obj 343 197 expr $f1/140;
+#X obj 342 264 hip~ 5;
+#X obj 341 330 dac~ 1 2;
+#X obj 342 294 *~;
+#X obj 379 293 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 119 84 r fire_list;
+#X obj 239 65 r potential_list;
+#X obj 239 92 cyclone/speedlim 10;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 1 3 0;
+#X connect 1 2 4 0;
+#X connect 1 3 5 0;
+#X connect 6 0 7 0;
+#X connect 6 0 15 0;
+#X connect 6 1 21 0;
+#X connect 9 0 12 0;
+#X connect 9 1 13 0;
+#X connect 12 0 10 0;
+#X connect 13 0 11 0;
+#X connect 14 0 16 0;
+#X connect 15 0 14 0;
+#X connect 16 0 18 0;
+#X connect 18 0 17 0;
+#X connect 19 0 18 1;
+#X connect 20 0 22 0;
+#X connect 21 0 20 0;
+#X connect 22 0 24 0;
+#X connect 24 0 23 1;
+#X connect 25 0 24 1;
+#X connect 26 0 9 0;
+#X connect 27 0 28 0;
+#X connect 28 0 6 0;
+#X restore 19 384 pd stuff;
+#X msg 17 85 append_nn red2.json;
+#X msg 494 75 set_dts \$1;
+#X obj 494 55 nbx 5 14 0 1e+37 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 0.02 256;
+#X obj 494 33 / 1000;
+#X obj 494 15 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 20 256;
+#X obj 278 344 print;
+#X msg 17 65 append_nn circular.json;
+#X msg 224 157 clear;
+#X obj 763 15 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 763 72 pack f f;
+#X obj 823 15 nbx 5 14 0 1e+37 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 69 256;
+#X obj 781 48 t b f;
+#X msg 763 97 set_current \$1 \$2;
+#X obj 623 123 s tosnn;
+#X obj 763 123 s tosnn;
+#X obj 307 211 r tosnn;
+#X msg 17 45 append_nn tree.json;
+#X msg 21 216 add_neurons 2;
+#X obj 715 167 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 0 256;
+#X obj 775 167 nbx 5 14 0 1e+37 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 1 256;
+#X obj 733 200 t b f;
+#X obj 715 275 s tosnn;
+#X msg 715 249 set_syn_w \$1 \$2 \$3;
+#X obj 783 202 t b f;
+#X obj 715 224 pack f f f;
+#X obj 835 166 nbx 5 14 0 1e+37 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 0 256;
+#X obj 229 267 snn, f 26;
+#X obj 497 264 s tosnn;
+#X obj 494 98 s tosnn;
+#X obj 340 107 s tosnn;
+#X msg 340 84 toggle_fire_list \$1;
+#X obj 340 61 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 380 45 del 50;
+#X obj 382 20 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 257 66 s tosnn;
+#X obj 252 241 spigot;
+#X obj 307 244 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X msg 179 395 add_neurons 2 \, add_all_synapses \, set_current 0 10
+\, neurons_potential 0 1 \,;
+#X obj 179 436 s tosnn;
+#X connect 0 0 7 0;
+#X connect 1 0 3 0;
+#X connect 2 0 36 0;
+#X connect 3 0 2 0;
+#X connect 4 0 21 0;
+#X connect 5 0 49 0;
+#X connect 7 0 57 0;
+#X connect 8 0 7 1;
+#X connect 9 0 49 0;
+#X connect 10 0 49 0;
+#X connect 11 0 14 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 13 1 14 1;
+#X connect 14 0 17 0;
+#X connect 15 0 16 0;
+#X connect 16 0 14 0;
+#X connect 16 1 14 2;
+#X connect 17 0 50 0;
+#X connect 18 0 49 0;
+#X connect 21 0 3 0;
+#X connect 21 1 3 1;
+#X connect 23 0 49 0;
+#X connect 24 0 51 0;
+#X connect 25 0 24 0;
+#X connect 26 0 25 0;
+#X connect 27 0 26 0;
+#X connect 29 0 49 0;
+#X connect 30 0 49 0;
+#X connect 31 0 32 0;
+#X connect 32 0 35 0;
+#X connect 33 0 34 0;
+#X connect 34 0 32 0;
+#X connect 34 1 32 1;
+#X connect 35 0 37 0;
+#X connect 38 0 58 0;
+#X connect 39 0 49 0;
+#X connect 40 0 49 0;
+#X connect 41 0 47 0;
+#X connect 42 0 43 0;
+#X connect 43 0 47 0;
+#X connect 43 1 47 1;
+#X connect 45 0 44 0;
+#X connect 46 0 47 0;
+#X connect 46 1 47 2;
+#X connect 47 0 45 0;
+#X connect 48 0 46 0;
+#X connect 49 0 19 0;
+#X connect 49 1 6 0;
+#X connect 49 2 20 0;
+#X connect 53 0 52 0;
+#X connect 54 0 53 0;
+#X connect 55 0 54 0;
+#X connect 56 0 54 0;
+#X connect 56 0 55 0;
+#X connect 58 0 49 0;
+#X connect 59 0 58 1;
+#X connect 60 0 61 0;

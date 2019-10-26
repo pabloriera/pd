@@ -1,0 +1,8 @@
+#N canvas 33 169 450 300 10;
+#X obj 100 100 bng 50 50 10 0 empty empty empty 17 7 0 10 -262144 -260097
+-1;
+#X obj 101 75 sel \$1;
+#X obj 101 50 r fired;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;
+#X coords 0 -1 1 1 50 50 2 100 100;

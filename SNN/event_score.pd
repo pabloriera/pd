@@ -1,0 +1,151 @@
+#N canvas 0 159 231 273 10;
+#N canvas 84 801 962 302 events 1;
+#X obj 2 10 cnv 15 15 25 . . 0 2 12 0 17 -233017 -66577 1.04858e+06
+;
+#X obj 2 35 cnv 15 15 25 . . 1 2 12 0 17 -233017 -66577 1.04858e+06
+;
+#X obj 2 60 cnv 15 15 25 . . 2 2 12 0 17 -233017 -66577 1.04858e+06
+;
+#X obj 2 85 cnv 15 15 25 . . 3 2 12 0 17 -233017 -66577 1.04858e+06
+;
+#X obj 2 110 cnv 15 15 25 . . 4 2 12 0 17 -233017 -66577 1.04858e+06
+;
+#X obj 2 135 cnv 15 15 25 . . 5 2 12 0 17 -233017 -66577 1.04858e+06
+;
+#X obj 2 160 cnv 15 15 25 . . 6 2 12 0 17 -233017 -66577 1.04858e+06
+;
+#X obj 2 185 cnv 15 15 25 . . 7 2 12 0 17 -233017 -66577 1.04858e+06
+;
+#X obj 2 210 cnv 15 15 25 . . 8 2 12 0 17 -233017 -66577 1.04858e+06
+;
+#X obj 2 235 cnv 15 15 25 . . 9 2 12 0 17 -233017 -66577 1.04858e+06
+;
+#X restore 15 49 pd events;
+#N canvas 1063 287 485 533 events_gen 0;
+#X obj 97 400 pack f f f;
+#X obj 154 377 nbx 5 14 0 1e+37 0 1 empty empty empty 0 -8 0 10 -262144
+-1 -1 17 256;
+#X obj 154 351 - 8;
+#X obj 64 118 r fired;
+#X obj 64 153 t b f;
+#X obj 248 249 r event_h;
+#X obj 154 327 r event_h;
+#X obj 80 206 r pos_x;
+#X obj 61 244 f;
+#X msg 97 437 \; add-spike \$1 \$2 1 \$3 \;;
+#X obj 125 284 expr $f1 * $f2 +10;
+#X connect 0 0 9 0;
+#X connect 1 0 0 2;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 4 0 8 0;
+#X connect 4 1 10 0;
+#X connect 5 0 10 1;
+#X connect 6 0 2 0;
+#X connect 7 0 8 1;
+#X connect 8 0 0 0;
+#X connect 10 0 0 1;
+#X restore 15 73 pd events_gen;
+#N canvas 49 528 458 474 events_sweep 0;
+#X obj 13 20 r start;
+#X obj 13 93 pointer;
+#X obj 13 43 symbol;
+#X obj 13 118 s this-ptr;
+#X msg 13 68 traverse \$1 \, bang;
+#X obj 200 388 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 191 256;
+#X obj 200 115 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 200 408 s pos_x;
+#X obj 287 187 t b b b;
+#X obj 322 161 loadbang;
+#X msg 201 41 \; pd-events clear;
+#X msg 330 40 \; start pd-events;
+#X obj 330 16 r events_draw;
+#X obj 201 16 r events_clear;
+#X obj 326 209 s events_clear;
+#X obj 306 230 s events_draw;
+#X obj 287 253 s counter_reset;
+#X obj 200 87 r counter_reset;
+#X obj 243 138 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 700 256;
+#X obj 233 319 r counter_bypass;
+#X obj 200 365 spigot;
+#X obj 233 343 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 147 204 nbx 5 14 -1e+37 1e+37 0 0 empty empty empty 0 -8 0 10
+-262144 -1 -1 191 256;
+#X obj 332 137 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 50 256;
+#X obj 200 160 for++ 20 700 10;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;
+#X connect 4 0 1 0;
+#X connect 5 0 7 0;
+#X connect 6 0 24 0;
+#X connect 8 0 16 0;
+#X connect 8 1 15 0;
+#X connect 8 2 14 0;
+#X connect 9 0 8 0;
+#X connect 12 0 11 0;
+#X connect 13 0 10 0;
+#X connect 17 0 6 0;
+#X connect 18 0 24 1;
+#X connect 19 0 21 0;
+#X connect 20 0 5 0;
+#X connect 21 0 20 1;
+#X connect 23 0 24 2;
+#X connect 24 0 20 0;
+#X connect 24 0 22 0;
+#X connect 24 1 8 0;
+#X restore 15 27 pd events_sweep;
+#N canvas 688 394 378 207 spike 0;
+#X obj 128 108 r this-ptr;
+#X obj 11 164 s this-ptr;
+#X obj 11 21 struct spike float x float y float w float h;
+#X obj 11 138 append spike x y w h;
+#X obj 11 109 r add-spike;
+#X obj 11 59 filledpolygon 0 0 0 0 0 0 h w h w 0 0 0;
+#X connect 0 0 3 4;
+#X connect 3 0 1 0;
+#X connect 4 0 3 0;
+#X restore 15 97 pd spike;
+#X obj 13 167 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 25 256;
+#X obj 13 192 s event_h;
+#N canvas 866 111 418 526 labels 0;
+#X obj 51 477 s pd-events;
+#X obj 132 366 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 17 256;
+#X obj 133 344 - 8;
+#X obj 111 161 r event_h;
+#X obj 132 322 r event_h;
+#X obj 117 284 r event_h;
+#X obj 94 72 r snn_neurons;
+#X obj 51 83 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 51 43 r counter_reset;
+#X obj 52 204 expr $f1*$f2+10;
+#X obj 94 94 - 1;
+#X obj 51 116 for++ 0 9;
+#X obj 51 392 pack f f f f;
+#X msg 51 434 obj 2 \$1 cnv 15 15 \$3 . . \$2 2 12 0 \$4 10 2 2;
+#X obj 50 153 t f f;
+#X connect 1 0 12 3;
+#X connect 2 0 1 0;
+#X connect 3 0 9 1;
+#X connect 4 0 2 0;
+#X connect 5 0 12 2;
+#X connect 6 0 10 0;
+#X connect 7 0 11 0;
+#X connect 8 0 7 0;
+#X connect 9 0 12 0;
+#X connect 10 0 11 1;
+#X connect 11 0 14 0;
+#X connect 12 0 13 0;
+#X connect 13 0 0 0;
+#X connect 14 0 9 0;
+#X connect 14 1 12 1;
+#X restore 15 120 pd labels;
+#X connect 4 0 5 0;

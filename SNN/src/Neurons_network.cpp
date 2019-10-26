@@ -21,7 +21,7 @@ string Neurons_network::dump_json()
     for (neuronMap::iterator it=neurons.begin(); it!=neurons.end(); ++it)
     {
         json jp;
-        jp = {{"dc",it->second->dc}};
+        jp = {{"dc",(float)it->second->dc}};
         jn[to_string(it->first)] = jp;
     }
 
@@ -40,7 +40,7 @@ string Neurons_network::dump_json()
     return j.dump(4);
 }
 
-bool Neurons_network::load_from_json(string filename,int mode)
+bool Neurons_network::load_from_json(string filename,size_t mode)
 {
 
     if (!file_exists(filename))
@@ -64,7 +64,7 @@ bool Neurons_network::load_from_json(string filename,int mode)
 
         auto j = json::parse(str);
 
-        int base_id = neuron_id;
+        size_t base_id = neuron_id;
 
         if (j.find("neurons") != j.end()) {
         
@@ -74,7 +74,7 @@ bool Neurons_network::load_from_json(string filename,int mode)
             {
                 // cout << it.key() << " : " << it.value() << "\n";
 
-                int id = stoi( it.key() );
+                size_t id = stoi( it.key() );
 
                 cout << "mode " << mode << "\n";
 
@@ -99,7 +99,7 @@ bool Neurons_network::load_from_json(string filename,int mode)
 
                 if(j3.find("dc") != j3.end())
                 {
-                    n->dc = j3["dc"];
+                    n->dc = (float)j3["dc"];
                     cout << n->id << ": dc = " << n->dc << '\n';
                 }
                     
@@ -120,8 +120,8 @@ bool Neurons_network::load_from_json(string filename,int mode)
             {
                 
                 json jsyn = *it;
-                int from_id = jsyn["from"];
-                int to_id = jsyn["to"];
+                size_t from_id = jsyn["from"];
+                size_t to_id = jsyn["to"];
 
                 if(mode==0)//append
                 {
@@ -147,13 +147,15 @@ bool Neurons_network::load_from_json(string filename,int mode)
                     s = add_synapse(from_id,to_id);
                     cout << "synapse (" << from_id << "," << to_id << ") added" << '\n';
                 }
-
-                if(jsyn.find("weight") != jsyn.end())
+                else
                 {
-                    s->weight = jsyn["weight"];
-                    cout << "synapse (" << from_id << "," << to_id << "): weight = " << s->weight << '\n';
-                }
-                    
+                    if(jsyn.find("weight") != jsyn.end())
+                    {
+                        s->weight = jsyn["weight"];
+                        cout << "synapse (" << from_id << "," << to_id << "): weight = " << s->weight << '\n';
+                    }
+                }   
+                
                 // for (json::iterator it3 = j3.begin(); it3 != j3.end(); ++it3)
                     // cout << it3.key() << " : " << it3.value() << "\n";         
 
@@ -257,14 +259,14 @@ void Neurons_network::add_all_synapses()
 }
 
 
-vector<int> Neurons_network::update()
+vector<size_t> Neurons_network::update()
 {
 
-    vector<int> fired;
+    vector<size_t> fired;
 
     for (neuronMap::iterator it=neurons.begin(); it!=neurons.end(); ++it)
     {
-        int i = it->first;
+        size_t i = it->first;
 
         if(neurons[i]->update())
         {
@@ -275,7 +277,7 @@ vector<int> Neurons_network::update()
     if (bool_syn_matrix)
         for (synapseMap::iterator it=synapses.begin(); it!=synapses.end(); ++it)
         {
-            int i = it->first;
+            size_t i = it->first;
             synapses[i]->to->currentBuffer( synapses[i]->weight, synapses[i]->delay, synapses[i]->from );
         }
 
@@ -310,6 +312,7 @@ Synapse* Neurons_network::synapseFromTo(size_t neuron_from_id, size_t neuron_to_
         if (it->second->from->id==neuron_from_id && it->second->to->id==neuron_to_id )
             return it->second;
     }
+    return NULL;
 }
 
 void Neurons_network::set_currents(float dc_mean, float dc_std)
@@ -318,10 +321,10 @@ void Neurons_network::set_currents(float dc_mean, float dc_std)
         it->second->dc = dc_mean + dc_std*random_normal();
 }
 
-void Neurons_network::set_current(int neuron_id, float dc)
+void Neurons_network::set_current(size_t neuron_id, float dc)
 {
     neuronMap::const_iterator it = neurons.find(neuron_id);
-    if( it!=neurons.end() );
+    if( it!=neurons.end() )
         neurons[neuron_id]->dc = dc;
 }
 
@@ -341,7 +344,7 @@ void Neurons_network::set_syn_w_matrix(float type_prop, float syn_w_mean, float 
 {
     for (synapseMap::iterator it=synapses.begin(); it!=synapses.end(); ++it)
     {
-        int i = it->first;
+        size_t i = it->first;
         it->second->from->syn_type = (i < type_prop*neurons.size())*2-1;
 
         float aux = MAX(syn_w_mean + syn_w_std*random_normal(),0);

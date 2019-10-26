@@ -1,0 +1,226 @@
+#N canvas 795 310 1004 504 10;
+#X declare -path ../autoconstructor;
+#N canvas 106 81 491 587 pool 0;
+#X obj 5 10 synth 0 ;
+#X obj 5 35 synth 1 ;
+#X obj 5 60 synth 2 ;
+#X obj 5 85 synth 3 ;
+#X obj 5 110 synth 4 ;
+#X obj 5 135 synth 5 ;
+#X obj 5 160 synth 6 ;
+#X obj 5 185 synth 7 ;
+#X obj 5 210 synth 8 ;
+#X obj 5 235 synth 9 ;
+#X restore 164 137 pd pool;
+#X msg 163 85 clear \, \$1 \, bang;
+#X obj 163 63 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 10 256;
+#X obj 163 205 catch~ mix;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array freq_tab 10 float 3;
+#A 0 45.3571 37.1927 42.6357 34.4716 40.8213 41.7287 47.1713 54.4287
+63.4995 69.8498;
+#X coords 0 127 10 0 200 140 1;
+#X restore 738 48 graph;
+#X obj 364 171 vsl 20 80 1 500 0 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 200 1;
+#X obj 364 259 s att;
+#X obj 424 171 vsl 20 80 2 1000 0 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 700 1;
+#X obj 424 259 s dec;
+#X msg 46 203 roomsize \$1;
+#X msg 41 254 damping \$1;
+#X msg 41 298 width \$1;
+#X msg 41 342 wet \$1;
+#X msg 41 386 dry \$1;
+#X msg 75 409 print;
+#X msg 246 407 freeze \$1;
+#X msg 249 455 bypass \$1;
+#X obj 248 440 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X obj 246 388 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
+1;
+#X obj 53 363 hsl 60 18 0 1 0 1 empty empty dry 2 9 1 12 -225271 -1
+-1 5200 0;
+#X obj 53 319 hsl 60 18 0 1 0 1 empty empty wet 2 9 1 12 -225271 -1
+-1 1900 0;
+#X obj 53 275 hsl 60 18 0 1 0 1 empty empty width 2 9 1 12 -262131
+-1 -1 1400 0;
+#X obj 53 231 hsl 60 18 0 2 0 1 empty empty damping 2 9 1 12 -261689
+-1 -1 1600 0;
+#X obj 58 180 hsl 60 18 0.11 1.1 0 1 empty empty roomsize 2 9 1 12
+-261689 -1 -1 500 0;
+#X floatatom 28 184 3 0 0 0 - - -, f 3;
+#X floatatom 23 235 3 0 0 0 - - -, f 3;
+#X floatatom 23 280 3 0 0 0 - - -, f 3;
+#X floatatom 23 323 3 0 0 0 - - -, f 3;
+#X floatatom 23 367 3 0 0 0 - - -, f 3;
+#X obj 164 255 *~ 0.1;
+#X obj 36 11 declare -path ../autoconstructor;
+#X msg 284 73 \; freq_tab resize \$1;
+#X obj 222 258 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 0.23 256;
+#X obj 38 72 s reset_lbang;
+#X obj 38 45 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 163 38 r reset_lbang;
+#X obj 472 170 vsl 20 80 0 127 0 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 500 1;
+#X obj 472 258 s vel;
+#X obj 522 170 vsl 20 80 1 1000 0 1 empty empty empty 0 -9 0 10 -262144
+-1 -1 1800 1;
+#X obj 522 258 s len;
+#X obj 163 109 ../autoconstructor/autoconstructor 14 synth pool 20
+;
+#X obj 163 327 pddp/ezoutput~;
+#X obj 164 302 freeverb~;
+#N canvas 0 81 760 300 midi 1;
+#X obj 70 9 r fired;
+#X obj 51 68 tabread freq_tab;
+#X obj 70 220 makenote;
+#X obj 70 254 noteout 10;
+#X obj 167 199 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 10 256;
+#X msg 264 131 clear \, \$1 \, bang;
+#X obj 264 111 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 64 256;
+#X obj 264 87 r reset_lbang;
+#N canvas 101 195 450 300 pool2 0;
+#X obj 5 10 midisend 0 ;
+#X obj 5 35 midisend 1 ;
+#X obj 5 60 midisend 2 ;
+#X obj 5 85 midisend 3 ;
+#X obj 5 110 midisend 4 ;
+#X obj 5 135 midisend 5 ;
+#X obj 5 160 midisend 6 ;
+#X obj 5 185 midisend 7 ;
+#X obj 5 210 midisend 8 ;
+#X obj 5 235 midisend 9 ;
+#X obj 5 260 midisend 10 ;
+#X obj 5 285 midisend 11 ;
+#X obj 5 310 midisend 12 ;
+#X obj 5 335 midisend 13 ;
+#X obj 5 360 midisend 14 ;
+#X obj 5 385 midisend 15 ;
+#X obj 5 410 midisend 16 ;
+#X obj 5 435 midisend 17 ;
+#X obj 5 460 midisend 18 ;
+#X obj 5 485 midisend 19 ;
+#X obj 5 510 midisend 20 ;
+#X obj 5 535 midisend 21 ;
+#X obj 5 560 midisend 22 ;
+#X obj 5 585 midisend 23 ;
+#X obj 5 610 midisend 24 ;
+#X obj 5 635 midisend 25 ;
+#X obj 5 660 midisend 26 ;
+#X obj 5 685 midisend 27 ;
+#X obj 5 710 midisend 28 ;
+#X obj 5 735 midisend 29 ;
+#X obj 5 760 midisend 30 ;
+#X obj 5 785 midisend 31 ;
+#X obj 5 810 midisend 32 ;
+#X obj 5 835 midisend 33 ;
+#X obj 5 860 midisend 34 ;
+#X obj 5 885 midisend 35 ;
+#X obj 5 910 midisend 36 ;
+#X obj 5 935 midisend 37 ;
+#X obj 5 960 midisend 38 ;
+#X obj 5 985 midisend 39 ;
+#X obj 5 1010 midisend 40 ;
+#X obj 5 1035 midisend 41 ;
+#X obj 5 1060 midisend 42 ;
+#X obj 5 1085 midisend 43 ;
+#X obj 5 1110 midisend 44 ;
+#X obj 5 1135 midisend 45 ;
+#X obj 5 1160 midisend 46 ;
+#X obj 5 1185 midisend 47 ;
+#X obj 5 1210 midisend 48 ;
+#X obj 5 1235 midisend 49 ;
+#X obj 5 1260 midisend 50 ;
+#X obj 5 1285 midisend 51 ;
+#X obj 5 1310 midisend 52 ;
+#X obj 5 1335 midisend 53 ;
+#X obj 5 1360 midisend 54 ;
+#X obj 5 1385 midisend 55 ;
+#X obj 5 1410 midisend 56 ;
+#X obj 5 1435 midisend 57 ;
+#X obj 5 1460 midisend 58 ;
+#X obj 5 1485 midisend 59 ;
+#X obj 5 1510 midisend 60 ;
+#X obj 5 1535 midisend 61 ;
+#X obj 5 1560 midisend 62 ;
+#X obj 5 1585 midisend 63 ;
+#X restore 264 177 pd pool2;
+#X obj 240 107 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 264 202 loadbang;
+#X obj 264 226 nbx 5 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
+-262144 -1 -1 10 256;
+#X obj 264 249 s section;
+#X obj 238 213 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 264 155 ../autoconstructor/autoconstructor 14 midisend pool2
+20;
+#X obj 70 31 t f f;
+#X obj 91 98 tabread vel_tab;
+#X obj 95 164 +;
+#X obj 129 137 r vel;
+#X connect 0 0 15 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 3 1;
+#X connect 4 0 2 2;
+#X connect 5 0 14 0;
+#X connect 6 0 5 0;
+#X connect 7 0 6 0;
+#X connect 9 0 6 0;
+#X connect 10 0 11 0;
+#X connect 11 0 12 0;
+#X connect 13 0 11 0;
+#X connect 15 0 1 0;
+#X connect 15 1 16 0;
+#X connect 16 0 17 0;
+#X connect 17 0 2 1;
+#X connect 18 0 17 1;
+#X restore 165 163 pd midi;
+#N canvas 0 50 450 250 (subpatch) 0;
+#X array vel_tab 10 float 3;
+#A 0 107.95 108.857 108.857 27.2147 23.5862 20.8648 20.8648 22.679
+25.4005 29.029;
+#X coords 0 127 10 0 200 140 1 0 0;
+#X restore 738 218 graph;
+#X connect 1 0 40 0;
+#X connect 2 0 1 0;
+#X connect 2 0 31 0;
+#X connect 3 0 29 0;
+#X connect 5 0 6 0;
+#X connect 7 0 8 0;
+#X connect 9 0 42 0;
+#X connect 10 0 42 0;
+#X connect 11 0 42 0;
+#X connect 12 0 42 0;
+#X connect 13 0 42 0;
+#X connect 14 0 42 0;
+#X connect 15 0 42 0;
+#X connect 16 0 42 0;
+#X connect 17 0 16 0;
+#X connect 18 0 15 0;
+#X connect 19 0 13 0;
+#X connect 19 0 28 0;
+#X connect 20 0 12 0;
+#X connect 20 0 27 0;
+#X connect 21 0 11 0;
+#X connect 21 0 26 0;
+#X connect 22 0 10 0;
+#X connect 22 0 25 0;
+#X connect 23 0 9 0;
+#X connect 23 0 24 0;
+#X connect 29 0 42 0;
+#X connect 29 0 42 1;
+#X connect 32 0 29 1;
+#X connect 34 0 33 0;
+#X connect 35 0 2 0;
+#X connect 36 0 37 0;
+#X connect 38 0 39 0;
+#X connect 42 0 41 0;
+#X connect 42 1 41 1;

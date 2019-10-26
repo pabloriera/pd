@@ -14,8 +14,8 @@
 
 using json = nlohmann::json;
 
-typedef map <int, Neuron*> neuronMap;
-typedef map <int, Synapse*> synapseMap;
+typedef map <size_t, Neuron*> neuronMap;
+typedef map <size_t, Synapse*> synapseMap;
 
 float drand();
 float random_normal();
@@ -25,7 +25,7 @@ public:
     Neurons_network();
 
     void setup(size_t _NN_sp_buffersize=64);
-    vector<int> update();
+    vector<size_t> update();
 
     void clear_all();
 
@@ -39,7 +39,7 @@ public:
     void remove_synapse(size_t id);
 
     string dump_json();
-    bool load_from_json(string filename, int mode = 0);
+    bool load_from_json(string filename, size_t mode = 0);
     void add_all_synapses();
 
     void reset();
@@ -47,7 +47,7 @@ public:
 
     void set_dts(float dt);
     void set_currents(float dc_mean, float dc_std);
-    void set_current(int neuron_id, float dc);
+    void set_current(size_t neuron_id, float dc);
 
     void set_syn_w_matrix(float type_prop,float syn_w_mean, float syn_w_weight);
     void set_syn_d_matrix(float syn_d_mean, float syn_d_weight);

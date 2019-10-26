@@ -13,7 +13,7 @@ typedef struct _snn {
 
 	bool fire_list_toggle;
 
-	vector<int> neurons_potential;
+	vector<size_t> neurons_potential;
 
 	Neurons_network NN;
 
@@ -22,25 +22,25 @@ typedef struct _snn {
 void snn_bang(t_snn *xSNN)
 {
 
-	vector<int> fired;
+	vector<size_t> fired;
     fired = xSNN->NN.update();
 
-	for (std::vector<int>::iterator it = fired.begin() ; it != fired.end(); ++it)
+	for (std::vector<size_t>::iterator it = fired.begin() ; it != fired.end(); ++it)
 		outlet_float(xSNN->xSNN_outlet_1,*it);   
 
 	// fire list
 	if(xSNN->fire_list_toggle)
 	{
-		int size = xSNN->NN.neurons.size();
+		size_t size = xSNN->NN.neurons.size();
 
 		t_atom *m;
         m = (t_atom *)getbytes(size*sizeof(t_atom));
-        for (int i=0;i<size;i++)
+        for (size_t i=0;i<size;i++)
         {
         	SETFLOAT(&m[i], (t_float)0);
         }
 
-        for (std::vector<int>::iterator it = fired.begin() ; it != fired.end(); ++it)
+        for (std::vector<size_t>::iterator it = fired.begin() ; it != fired.end(); ++it)
           	SETFLOAT(&m[*it], (t_float) 1);
 
         outlet_list(xSNN->xSNN_outlet_2, gensym("list"), size, m);
@@ -48,15 +48,15 @@ void snn_bang(t_snn *xSNN)
 	}
 
 	// potential trace
-	int size = xSNN->neurons_potential.size();
+	size_t size = xSNN->neurons_potential.size();
 	if(size>0)
 	{
 		t_atom *m;
         m = (t_atom *)getbytes(size*sizeof(t_atom));
-        int i = 0;
-		for (std::vector<int>::iterator it = xSNN->neurons_potential.begin() ; it != xSNN->neurons_potential.end(); ++it)
+        size_t i = 0;
+		for (std::vector<size_t>::iterator it = xSNN->neurons_potential.begin() ; it != xSNN->neurons_potential.end(); ++it)
 		{
-			SETFLOAT(&m[i], (t_float)xSNN->NN.neurons[(int)*it]->V );
+			SETFLOAT(&m[i], (t_float)xSNN->NN.neurons[(size_t)*it]->V );
 			i++;
 		}
 
@@ -66,11 +66,11 @@ void snn_bang(t_snn *xSNN)
 	
 }
 
-void snn_neurons_potential(t_snn *xSNN,  t_symbol *s, int argc, t_atom *argv)
+void snn_neurons_potential(t_snn *xSNN,  t_symbol *s, size_t argc, t_atom *argv)
 {
 	xSNN->neurons_potential.clear();
 
-	int n = argc;
+	size_t n = argc;
 	while(n--){
     	t_float f = atom_getfloat(argv++);
     	xSNN->neurons_potential.push_back(f);
@@ -84,11 +84,11 @@ void snn_toggle_fire_list(t_snn *xSNN, t_floatarg togg)
 
 
 
-void snn_anything(t_snn *xSNN,  t_symbol *s, int argc, t_atom *argv)
+void snn_anything(t_snn *xSNN,  t_symbol *s, size_t argc, t_atom *argv)
 {
 	//post("%s",s->s_name);
 
-	int n = argc;
+	size_t n = argc;
 	// post("%d",n);
 	// while(n--){
  //    	post("%g",atom_getfloat(&argv[n]) );
@@ -103,6 +103,14 @@ void snn_anything(t_snn *xSNN,  t_symbol *s, int argc, t_atom *argv)
 	    	xSNN->NN.set_syn_w_matrix(atom_getfloat(&argv[0]),
 	    							  atom_getfloat(&argv[1]),
 	    							  atom_getfloat(&argv[2]));
+		}
+	}
+	else if(sym.compare("set_syn_d_matrix")==0)
+	{
+		if(argc==2)
+		{
+	    	xSNN->NN.set_syn_d_matrix(atom_getfloat(&argv[0]),
+	    							  atom_getfloat(&argv[1]));
 		}
 	}
 	else if(sym.compare("set_syn_w")==0)
@@ -147,7 +155,7 @@ void snn_anything(t_snn *xSNN,  t_symbol *s, int argc, t_atom *argv)
 	{
 		xSNN->NN.clear_all();
 	}
-	else if(sym.compare("print_nn")==0)
+	else if(sym.compare("prsize_t_nn")==0)
 	{
 		std::cout << xSNN->NN.dump_json() << std::endl;
 	}
@@ -174,7 +182,7 @@ void snn_free(t_snn *xSNN)
 }
 
 //void *snn_new(t_t_floatarg a,t_t_floatarg b,t_t_floatarg c,t_t_floatarg d,t_t_floatarg maxV,t_t_floatarg dt)
-void *snn_new(t_symbol *s, int argc, t_atom *argv) /* A_GIMME requiere de estos tres argumentos*/
+void *snn_new(t_symbol *s, size_t argc, t_atom *argv) /* A_GIMME requiere de estos tres argumentos*/
 {
 
   std::cout << "#### 1" << std::endl;
